@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Input, Select } from 'antd';
+import NavBar from './composants/Navbar.tsx';
 
 const { Option } = Select;
 
@@ -11,7 +12,7 @@ export default function PageMemoire() {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+        <><NavBar /><div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
             <div style={{ backgroundColor: '#ff9600', padding: '20px', display: 'flex', justifyContent: 'space-between' }}>
                 <Button style={{ backgroundColor: '#fff' }}>Filtrer</Button>
                 <Select
@@ -45,6 +46,6 @@ export default function PageMemoire() {
                     <Button style={{ backgroundColor: '#fff', color: '#ff9600' }}>OUVRIR</Button>
                 </div>
             </div>
-        </div>
+        </div></>
     );
 }

@@ -18,7 +18,7 @@ export default function NavBar() {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light " style={{ boxShadow: '0 5px 20px 0px gray' }}>
             <div style={{ minHeight: "50px", display: 'flex', alignItems: 'center', padding: '10px' }}>
                 <a className="navbar-brand" href="#">Navbar</a>
                 <Select
