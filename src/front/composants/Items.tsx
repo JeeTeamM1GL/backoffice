@@ -1,7 +1,7 @@
 import { Button, Input, Select, Table } from 'antd';
 import React from 'react';
 import Alignement from './Alignement.tsx';
-
+import logo from '../../asset/logo.png'
 const { Option } = Select;
 
 interface ButtonsProps {
@@ -92,5 +92,28 @@ export function Imputs({ items, alignement = "Y" }: ImputsProps) {
         </div>
       ))}
     </Alignement>
+  );
+}
+
+
+export function Memoire(memoire: { id: string | number, nom: string, anneeScolaire: string, classe: string, filiere: string, image: string }) {
+  return (
+    <div key={memoire.id ?? new Date().getTime()} style={{ backgroundColor: '#ff9600', maxHeight: '300px', textAlign: 'center', minWidth: "100px", maxWidth: "110px", margin: "10px" }}>
+      {
+        memoire.image ? <img src={memoire.image} alt="image" width={"70px"} height={"70px"}/> :
+          <center>
+            <div style={{ backgroundColor: '#0077ff', height: '100px', textAlign: 'center', minWidth: "80px", maxWidth: "70px", margin: "10px" }}>
+              <img src={logo} alt="image" width={"70px"} height={"70px"} />
+            </div>
+          </center>
+      }
+
+      <div style={{fontSize:"12px",margin:"10px"}}>
+        <p>{memoire.nom===""? "non-mentionné":memoire.nom}</p>
+        <p>{memoire.anneeScolaire===""? "non-mentionné":memoire.anneeScolaire}</p>
+        <p>{`${memoire.classe===""? "non-mentionné":memoire.classe} - ${memoire.filiere===""? "non-mentionné":memoire.filiere}`}</p>
+      </div>
+
+    </div>
   );
 }

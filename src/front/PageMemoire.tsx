@@ -1,51 +1,89 @@
 import React, { useState } from 'react';
 import { Button, Input, Select } from 'antd';
 import NavBar from './composants/Navbar.tsx';
+import { Memoire } from './composants/Items.tsx';
 
 const { Option } = Select;
 
 export default function PageMemoire() {
-    const [jury, setJury] = useState('');
+    const [filtre, setFiltre] = useState({
+        typeDeFiltre: "tout-voir",
+        filtrerPar: "jury",
+        objetDuFiltre: "",
+        placeholder: "entrez le nom du jury à filtrer..."
+    });
 
-    const handleJuryChange = (value) => {
-        setJury(value);
+    const handleFilterChange = (value) => {
+        if (value === "tout-voir") {
+            setFiltre({ ...filtre, typeDeFiltre: "tout-voir" });
+        } else if (value === "filtrer") {
+            setFiltre({ ...filtre, typeDeFiltre: "filtrer" });
+        }
+    };
+
+    const handleFilterByChange = (value) => {
+        if (value === "jury") {
+            setFiltre({ ...filtre, filtrerPar: "jury", placeholder: "entrez le nom du jury à filtrer..." });
+        } else if (value === "annee-scolaire") {
+            setFiltre({ ...filtre, filtrerPar: "annee-scolaire", placeholder: "entrez l'année scolaire à filtrer..." });
+        } else if (value === "filiere") {
+            setFiltre({ ...filtre, filtrerPar: "filiere", placeholder: "entrez la filière à filtrer..." });
+        }
     };
 
     return (
-        <><NavBar /><div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-            <div style={{ backgroundColor: '#ff9600', padding: '20px', display: 'flex', justifyContent: 'space-between' }}>
-                <Button style={{ backgroundColor: '#fff' }}>Filtrer</Button>
-                <Select
-                    placeholder="par jury"
-                    value={jury}
-                    onChange={handleJuryChange}
-                    style={{ width: '150px', marginLeft: '10px' }}
-                >
-                    <Option value="jury1">Jury 1</Option>
-                    <Option value="jury2">Jury 2</Option>
-                </Select>
-                <Input placeholder="entrez le nom du jury a filtrer..." style={{ width: '300px', marginLeft: '10px' }} />
-            </div>
-            <div style={{ display: 'flex', flex: 1 }}>
-                <div style={{ flex: 4, padding: '20px', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px' }}>
-                    {Array.from({ length: 15 }).map((_, index) => (
-                        <div key={index} style={{ backgroundColor: '#ff9600', height: '150px', textAlign: 'center' }}>
-                            <p>memoire1</p>
-                            <p>annee scolaire</p>
-                            <p>classe-filiere</p>
-                        </div>
-                    ))}
+        <>
+            <NavBar />
+            <div>
+                <div style={{ backgroundColor: '#ff9600', padding: '20px', display: 'flex' }}>
+                    <Select
+                        value={filtre.typeDeFiltre}
+                        onChange={handleFilterChange}
+                        style={{ width: '150px', marginLeft: '10px' }}
+                    >
+                        <Option value="tout-voir">Tout voir</Option>
+                        <Option value="filtrer">Filtrer</Option>
+                    </Select>
+                    {filtre.typeDeFiltre === "filtrer" && (
+                        
+                        <>
+                        <p style={{marginTop:"5px"}}>{"Par:"}</p>
+                            <Select
+                                placeholder="par jury"
+                                value={filtre.filtrerPar}
+                                onChange={handleFilterByChange}
+                                style={{ width: '150px', marginLeft: '10px' }}
+                            >
+                                <Option value="jury">Jury</Option>
+                                <Option value="annee-scolaire">Année scolaire</Option>
+                                <Option value="filiere">Filière</Option>
+                            </Select>
+                            <Input
+                                placeholder={filtre.placeholder}
+                                value={filtre.objetDuFiltre}
+                                onChange={(e) => setFiltre({ ...filtre, objetDuFiltre: e.target.value })}
+                                style={{ width: '300px', marginLeft: '10px' }}
+                            />
+                        </>
+                    )}
                 </div>
-                <div style={{ flex: 2, backgroundColor: '#ff9600', padding: '20px', color: '#fff' }}>
-                    <h2>TITRE MEMOIRE</h2>
-                    <p>Note sur 20</p>
-                    <h3>Résumé du mémoire</h3>
-                    <p>Résumé du mémoire...</p>
-                    <h3>Commentaire jury</h3>
-                    <p>Commentaire du jury...</p>
-                    <Button style={{ backgroundColor: '#fff', color: '#ff9600' }}>OUVRIR</Button>
+                <div style={{ display: 'flex', flex: 1 }}>
+                    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+                        {Array.from({ length: 15 }).map((_, index) => (
+                            <Memoire key={index} id={index} nom={''} anneeScolaire={''} classe={''} filiere={''} image={''} />
+                        ))}
+                    </div>
+                    <div style={{ flex: 2, backgroundColor: '#ff9600', padding: '20px', color: '#fff', minWidth: "450px" }}>
+                        <h2>TITRE MEMOIRE</h2>
+                        <p>Note sur 20</p>
+                        <h3>Résumé du mémoire</h3>
+                        <p>Résumé du mémoire...</p>
+                        <h3>Commentaire jury</h3>
+                        <p>Commentaire du jury...</p>
+                        <Button style={{ backgroundColor: '#fff', color: '#ff9600' }}>OUVRIR</Button>
+                    </div>
                 </div>
             </div>
-        </div></>
+        </>
     );
 }

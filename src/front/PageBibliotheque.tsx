@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, Button } from 'antd';
 import NavBar from './composants/Navbar.tsx';
+import {Memoire} from '../front/composants/Items.tsx';
 import { useNavigate } from 'react-router-dom';
 
 export default function PageModifierAjouterMemoire() {
@@ -16,11 +17,7 @@ export default function PageModifierAjouterMemoire() {
 
                     <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
                         {Array.from({ length: 60 }).map((_, index) => (
-                            <div key={index} style={{ backgroundColor: '#ff9600', height: '150px', textAlign: 'center', minWidth: "100px", maxWidth: "110px", margin: "10px" }}>
-                                <p>memoire1</p>
-                                <p>annee scolaire</p>
-                                <p>classe-filiere</p>
-                            </div>
+                                <Memoire id={''} nom={''} anneeScolaire={''} classe={''} filiere={''} image={''}/>
                         ))}
                     </div>
 
