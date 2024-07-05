@@ -18,12 +18,11 @@ const App = () => (
   <Router>
     <Routes>
       <Route path="/" element={<PageAutentification />} />
-
-      <Route path="/profil/:userId" element={<PageBibliotheque />} />
-      <Route path="/parametres/:userId" element={<PageMemoireDetail />} />
-      <Route path="/nouveau-compte" element={<PageMemoire />} />
-      <Route path="/connection" element={<PagePageMemoireLecture />} />
-      <Route path="/patient/:userId/:tabId" element={<PageProfile />} />
+      <Route path="/bibliotheque" element={<PageBibliotheque />} />
+      <Route path="/memoireDetail" element={<PageMemoireDetail />} />
+      <Route path="/memoire" element={<PageMemoire />} />
+      <Route path="/memoire-lecture" element={<PagePageMemoireLecture />} />
+      <Route path="/profil" element={<PageProfile />} />
     </Routes>
   </Router>
 );

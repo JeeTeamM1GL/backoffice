@@ -2,7 +2,6 @@ import { Button, Input, Select, Table } from 'antd';
 import React from 'react';
 import Alignement from './Alignement.tsx';
 
-
 const { Option } = Select;
 
 interface ButtonsProps {
@@ -34,17 +33,17 @@ export function Buttons({
 interface SelectsProps {
   SelectValues: string;
   style?: React.CSSProperties;
-  onchange: (value: string) => void;
+  onChange: (value: string) => void;
   optionValue: string;
 }
 
-export function Selects({ SelectValues, style, onchange, optionValue }: SelectsProps) {
+export function Selects({ SelectValues, style, onChange, optionValue }: SelectsProps) {
   return (
     <div>
       <Select
         placeholder="Select an option"
         value={SelectValues}
-        onChange={onchange}
+        onChange={onChange}
         style={style}
       >
         <Option value={optionValue}>{optionValue}</Option>
@@ -67,22 +66,27 @@ export function Tables({ style, dataSource, columns }: TablesProps) {
   );
 }
 
-interface ImputsProps {
+interface ImputItem {
+  key: number;
   value: string;
   style?: React.CSSProperties;
-  onchange: (index: number, value: string) => void;
+  onChange: (index: number, value: string) => void;
+}
+
+interface ImputsProps {
+  items: ImputItem[];
   alignement?: 'X' | 'Y';
 }
 
-export function Imputs({items,alignement}) {
+export function Imputs({ items, alignement = "Y" }: ImputsProps) {
   return (
     <Alignement alignement={alignement}>
-      {items?.map((item, index) => (
-        <div key={index} style={{ display: alignement === "Y" ? 'block' : 'inline-block' }}>
+      {items?.map((item) => (
+        <div key={item.key} style={{ display: alignement === "Y" ? 'block' : 'inline-block' }}>
           <Input
             placeholder="Input something"
             value={item.value}
-            onChange={(e) => item.onchange(index, e.target.value)}
+            onChange={(e) => item.onChange(item.key, e.target.value)}
             style={item.style}
           />
         </div>
@@ -90,5 +94,3 @@ export function Imputs({items,alignement}) {
     </Alignement>
   );
 }
-
-
