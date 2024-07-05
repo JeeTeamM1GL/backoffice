@@ -1,0 +1,878 @@
+@charset "utf-8";
+.leftBackground
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 16px;
+	top : 94px;
+}
+.Styledecaractresnormal13
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 12px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal12
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 12px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal11
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 12px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal16
+{
+	font-family : Segoe Print;
+	font-size : 45px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal17
+{
+	font-family : Segoe Print;
+	font-size : 45px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal14
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 12px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal15
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 12px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal20
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal21
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal18
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal19
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal22
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal24
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal26
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal25
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal23
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal28
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal32
+{
+	font-family : Segoe Print;
+	font-size : 32px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal29
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal31
+{
+	font-family : Segoe Print;
+	font-size : 45px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal27
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal30
+{
+	font-family : Segoe Print;
+	font-size : 45px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal36
+{
+	font-family : Segoe Print;
+	font-size : 32px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal34
+{
+	font-family : Segoe Print;
+	font-size : 45px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal35
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 30px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal33
+{
+	font-family : Segoe Print;
+	font-size : 45px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal39
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 23px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal38
+{
+	font-family : Acumin Variable Concept;
+	font-size : 23px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal40
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 23px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal37
+{
+	font-family : Segoe Print;
+	font-size : 45px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal10
+{
+	font-family : Acumin Variable Concept;
+	font-size : 17px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.memoire_00000008838297849481697510000004740559128208725918_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 786px;
+	top : 465px;
+	border-radius : 12px;
+	-moz-border-radius : 12px;
+	-webkit-border-radius : 12px;
+}
+.memoire_00000132062786695124381470000014104220760532594569_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 614px;
+	top : 499px;
+	border-radius : 12px;
+	-moz-border-radius : 12px;
+	-webkit-border-radius : 12px;
+}
+.memoire_00000003799032733681049680000000440006104789051041_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 614px;
+	top : 401px;
+	border-radius : 12px;
+	-moz-border-radius : 12px;
+	-webkit-border-radius : 12px;
+}
+.memoire_00000065791503440440739090000016053711838573148067_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 648px;
+	top : 467px;
+	border-radius : 12px;
+	-moz-border-radius : 12px;
+	-webkit-border-radius : 12px;
+}
+.memoire_00000036239288928286443890000015666789436784315534_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 617px;
+	top : 561px;
+	border-radius : 12px;
+	-moz-border-radius : 12px;
+	-webkit-border-radius : 12px;
+}
+.memoire_00000079457700195315071590000016290801446387504780_
+{
+	background : #1D1D1B;
+	background : rgba(29, 29, 27, 1);
+	position : absolute ;
+	left : 794px;
+	top : 622px;
+	border-radius : 12px;
+	-moz-border-radius : 12px;
+	-webkit-border-radius : 12px;
+}
+.memoire_00000151514099678361374710000011127869775859706020_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 617px;
+	top : 594px;
+	border-radius : 12px;
+	-moz-border-radius : 12px;
+	-webkit-border-radius : 12px;
+}
+.memoire_00000070092505925467696300000015789711832866852002_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 615px;
+	top : 529px;
+	border-radius : 12px;
+	-moz-border-radius : 12px;
+	-webkit-border-radius : 12px;
+}
+.memoire_00000176761964630972520860000003158129313506767007_
+{
+	background : #1D1D1B;
+	background : rgba(29, 29, 27, 1);
+	position : absolute ;
+	left : 400px;
+	top : 614px;
+	border-radius : 20px;
+	-moz-border-radius : 20px;
+	-webkit-border-radius : 20px;
+}
+.memoire_00000111183581676003072220000016874845219671235762_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 400px;
+	top : 422px;
+}
+.memoire_00000095320201209754585860000004239318287560828824_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 616px;
+	top : 433px;
+	border-radius : 12px;
+	-moz-border-radius : 12px;
+	-webkit-border-radius : 12px;
+}
+.memoire_00000137123666645446646760000006947649091629884045_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 474px;
+	top : 163px;
+}
+.memoire_00000141441353608991058960000018401740665781763715_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 403px;
+	top : 236px;
+}
+.memoire_00000024709403677404775830000007739415143148860065_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 540px;
+	top : 236px;
+}
+.memoire_00000177464252737125782470000000916174646437062576_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 906px;
+	top : 620px;
+	border-radius : 31px;
+	-moz-border-radius : 31px;
+	-webkit-border-radius : 31px;
+}
+.memoire_00000140005138733606503720000008138146414130514847_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 720px;
+	top : 358px;
+}
+.memoire_00000078047002393561716640000016992290453733575064_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 443px;
+	top : 358px;
+}
+.memoire_00000181061926350890970340000003977077732931088293_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 574px;
+	top : 358px;
+}
+.memoire_00000000940424418574224700000007779534220956735396_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 296px;
+	top : 358px;
+}
+.memoire_00000115513717181394746770000011655781973715085718_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 16px;
+	top : 358px;
+}
+.memoire_00000110443153289847010920000013474302399305677706_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 720px;
+	top : 94px;
+}
+.memoire_00000010312040595506570980000011690474211597334693_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 162px;
+	top : 358px;
+}
+.memoire_00000109751461442634722190000000289475011304343955_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 574px;
+	top : 94px;
+}
+.memoire_00000164491090208636034320000002956111237761151148_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 443px;
+	top : 94px;
+}
+.memoire_00000142135101202043957010000017315002683965697682_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 162px;
+	top : 94px;
+}
+.memoire_00000072992263181459929110000004988120796068666270_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 296px;
+	top : 94px;
+}
+.memoire_00000094609438967516667150000014234627825037677998_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 802px;
+	top : 236px;
+}
+.memoire_00000032639744161570085830000006910612676777679517_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 938px;
+	top : 236px;
+}
+.memoire_00000171682244115118065530000014244676398947354009_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 689px;
+	top : 236px;
+}
+.memoire_00000139281651349164693950000004278673098881970091_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 535px;
+	top : 485px;
+}
+.memoire_00000072246091759593971280000016001839595091686546_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 398px;
+	top : 485px;
+}
+.memoire_00000156560587794782570400000016008234064667200923_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 1087px;
+	top : 236px;
+}
+.memoire_00000142881516039807357710000002323377998319117711_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 684px;
+	top : 485px;
+}
+.memoire_00000043421834298037002190000000157090075306916541_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 1029px;
+	top : 163px;
+}
+.memoire_00000167394702455056695690000010458805984852965280_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 914px;
+	top : 163px;
+}
+.memoire_00000085957965831471542350000018002213045866990991_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 810px;
+	top : 163px;
+}
+.memoire_00000169549705726229121260000007098439010247884221_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 697px;
+	top : 163px;
+}
+.memoire_00000165196587752650903390000012848631296498786979_
+{
+	background : #FFFFFF;
+	background : rgba(255, 255, 255, 1);
+	position : absolute ;
+	left : 582px;
+	top : 163px;
+}
+.memoire_00000160170924765667344470000013535614581906397331_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 797px;
+	top : 485px;
+}
+.memoire_00000088844092112918100300000014987202803243207302_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 933px;
+	top : 485px;
+}
+.memoire_00000070080200506151005500000003446242626625996677_
+{
+	background : #E18800;
+	background : rgba(225, 136, 0, 1);
+	position : absolute ;
+	left : 1082px;
+	top : 485px;
+}
+.Styledecaractresnormal41
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 30px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal42
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 30px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal43
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal45
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal46
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal44
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal47
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal48
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal50
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal52
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal51
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal49
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal54
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal55
+{
+	font-family : Myriad Pro;
+	font-size : 16px;
+	color : #FFFFFF;
+	color : rgb(255, 255, 255);
+}
+.Styledecaractresnormal56
+{
+	font-family : Acumin Variable Concept;
+	font-size : 32px;
+	color : #F39200;
+	color : rgb(243, 146, 0);
+}
+.Styledecaractresnormal53
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 16px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal57
+{
+	font-family : Acumin Variable Concept;
+	font-size : 32px;
+	color : #F39200;
+	color : rgb(243, 146, 0);
+}
+.Styledecaractresnormal58
+{
+	font-family : Acumin Variable Concept;
+	font-size : 32px;
+	color : #F39200;
+	color : rgb(243, 146, 0);
+}
+.Styledecaractresnormal59
+{
+	font-family : Acumin Variable Concept;
+	font-size : 32px;
+	color : #F39200;
+	color : rgb(243, 146, 0);
+}
+.Styledecaractresnormal60
+{
+	font-family : Myriad Pro;
+	font-size : 26px;
+	color : #F39200;
+	color : rgb(243, 146, 0);
+}
+.Styledecaractresnormal63
+{
+	font-family : Acumin Variable Concept;
+	font-size : 25px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal61
+{
+	font-family : Segoe Print;
+	font-size : 51px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal64
+{
+	font-family : Acumin Variable Concept;
+	font-size : 25px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal65
+{
+	font-family : Acumin Variable Concept;
+	font-size : 25px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal62
+{
+	font-family : Myriad Pro;
+	font-size : 13px;
+	color : #F39200;
+	color : rgb(243, 146, 0);
+}
+.Styledecaractresnormal66
+{
+	font-family : Segoe Print;
+	font-size : 52px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal
+{
+	font-family : Acumin Variable Concept;
+	font-size : 17px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal7
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 12px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal6
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 12px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal3
+{
+	font-family : Acumin Variable Concept;
+	font-size : 17px;
+	color : #F39200;
+	color : rgb(243, 146, 0);
+}
+.Styledecaractresnormal9
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 12px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal8
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 12px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal4
+{
+	font-family : Acumin Variable Concept;
+	font-size : 17px;
+	color : #FFFFFF;
+	color : rgb(255, 255, 255);
+}
+.Styledecaractresnormal5
+{
+	font-family : Acumin Variable Concept;
+	font-weight : bold;
+	font-size : 12px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal2
+{
+	font-family : Acumin Variable Concept;
+	font-size : 17px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
+.Styledecaractresnormal1
+{
+	font-family : Acumin Variable Concept;
+	font-size : 17px;
+	color : #1D1D1B;
+	color : rgb(29, 29, 27);
+}
