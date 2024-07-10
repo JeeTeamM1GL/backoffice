@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
-import { Button, Input, Select } from 'antd';
+import { Button, Input, Select, Pagination } from 'antd';
 import NavBar from './composants/Navbar.tsx';
 import { Memoire } from './composants/Items.tsx';
 
 const { Option } = Select;
+
+const memoires = Array.from({ length: 60 }).map((_, index) => ({
+  id: index,
+  nom: `Memoire ${index + 1}`,
+  anneeScolaire: '2023-2024',
+  classe: 'Classe A',
+  filiere: 'Filière X',
+  image: '' // Ajoutez les chemins des images si disponibles
+}));
+
+const ITEMS_PER_PAGE = 18; // Nombre d'items par page
 
 export default function PageMemoire() {
     const [filtre, setFiltre] = useState({
@@ -12,6 +23,8 @@ export default function PageMemoire() {
         objetDuFiltre: "",
         placeholder: "entrez le nom du jury à filtrer..."
     });
+
+    const [currentPage, setCurrentPage] = useState(1);
 
     const handleFilterChange = (value) => {
         if (value === "tout-voir") {
@@ -31,11 +44,18 @@ export default function PageMemoire() {
         }
     };
 
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const currentMemoires = memoires.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
     return (
         <>
-            <NavBar />
-            <div>
-                <div style={{ backgroundColor: '#ff9600', padding: '20px', display: 'flex' }}>
+
+            <div style={{ padding: '20px'}}>
+                <div style={{ backgroundColor: '#BEC9CB', padding: '20px', display: 'flex' }}>
                     <Select
                         value={filtre.typeDeFiltre}
                         onChange={handleFilterChange}
@@ -45,9 +65,8 @@ export default function PageMemoire() {
                         <Option value="filtrer">Filtrer</Option>
                     </Select>
                     {filtre.typeDeFiltre === "filtrer" && (
-                        
                         <>
-                        <p style={{marginTop:"5px"}}>{"Par:"}</p>
+                            <p style={{marginTop:"5px"}}>{"Par:"}</p>
                             <Select
                                 placeholder="par jury"
                                 value={filtre.filtrerPar}
@@ -67,21 +86,19 @@ export default function PageMemoire() {
                         </>
                     )}
                 </div>
-                <div style={{ display: 'flex', flex: 1 }}>
-                    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-                        {Array.from({ length: 15 }).map((_, index) => (
-                            <Memoire key={index} id={index} nom={''} anneeScolaire={''} classe={''} filiere={''} image={''} />
+                <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", maxHeight: "70%", overflow: "auto" }}>
+                        {currentMemoires.map((memoire, index) => (
+                            <Memoire key={index} {...memoire} />
                         ))}
                     </div>
-                    <div style={{ flex: 2, backgroundColor: '#ff9600', padding: '20px', color: '#fff', minWidth: "450px" }}>
-                        <h2>TITRE MEMOIRE</h2>
-                        <p>Note sur 20</p>
-                        <h3>Résumé du mémoire</h3>
-                        <p>Résumé du mémoire...</p>
-                        <h3>Commentaire jury</h3>
-                        <p>Commentaire du jury...</p>
-                        <Button style={{ backgroundColor: '#fff', color: '#ff9600' }}>OUVRIR</Button>
-                    </div>
+                    <Pagination
+                        current={currentPage}
+                        pageSize={ITEMS_PER_PAGE}
+                        total={memoires.length}
+                        onChange={handlePageChange}
+                        style={{ marginTop: '20px' }}
+                    />
                 </div>
             </div>
         </>

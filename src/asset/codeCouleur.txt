@@ -1,2 +1,2 @@
 blanc:#F8F8F8
-gris:#E0ECEE
+gris:#BEC9CB

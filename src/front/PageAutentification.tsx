@@ -24,7 +24,7 @@ export default function PageAutentification() {
 
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
-            <div style={{ flex: 1, backgroundColor: '#ff9600' }}>
+            <div style={{ flex: 1, backgroundColor: '#BEC9CB' }}>
                 <center><img src={logo} alt="logo" /></center>
                 <br />
                 <center><b><h1 style={{ fontSize: "50px", fontFamily: "monospace" }}>***ISI Memory***</h1></b></center>
@@ -38,7 +38,7 @@ export default function PageAutentification() {
                                 placeholder="entrez votre login..."
                                 value={connection.login}
                                 onChange={(e)=>setConnection({...connection,login:e.target.value})}
-                                style={{ backgroundColor: '#ff9600', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
                         <div style={{ width: '80%', marginBottom: '20px' }}>
@@ -47,18 +47,18 @@ export default function PageAutentification() {
                                 type="password"
                                 value={connection.password}
                                 onChange={(e)=>setConnection({...connection,password:e.target.value})}
-                                style={{ backgroundColor: '#ff9600', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
                         <Button
                             type="primary"
                             onClick={handleConncetionButtonClick}
-                            style={{ backgroundColor: '#ff9600', borderRadius: '20px', minWidth: '30%', minHeight: '50px', padding: '10px' }}
+                            style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', minWidth: '30%', minHeight: '50px', padding: '10px' }}
                         >
                             connection
                         </Button>
                         <p style={{ marginTop: '50px', fontStyle: 'italic', fontSize: "15px" }}>
-                            je ne suis pas d'isi , je souhaite <a onClick={() => newCompteOrConnection("newCompte")} style={{ color: '#ff9600', cursor: 'pointer' }}>creer un compte</a>
+                            je ne suis pas d'isi , je souhaite <a onClick={() => newCompteOrConnection("newCompte")} style={{ color: '#BEC9CB', cursor: 'pointer' }}>creer un compte</a>
                         </p>
                     </>
                 ) : (
@@ -69,7 +69,7 @@ export default function PageAutentification() {
                                 placeholder="entrez votre nom..."
                                 value={nouveauCompte.nom}
                                 onChange={(e)=>setNouveauCompte({...nouveauCompte,nom:e.target.value})}
-                                style={{ backgroundColor: '#ff9600', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
                         <div style={{ width: '80%', marginBottom: '20px' }}>
@@ -78,7 +78,7 @@ export default function PageAutentification() {
                                 type="text"
                                 value={nouveauCompte.prenon}
                                 onChange={(e)=>setNouveauCompte({...nouveauCompte,prenon:e.target.value})}
-                                style={{ backgroundColor: '#ff9600', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
                         <div style={{ width: '80%', marginBottom: '20px' }}>
@@ -86,7 +86,7 @@ export default function PageAutentification() {
                                 placeholder="entrez votre login..."
                                 value={nouveauCompte.login}
                                 onChange={(e)=>setNouveauCompte({...nouveauCompte,login:e.target.value})}
-                                style={{ backgroundColor: '#ff9600', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
                         <div style={{ width: '80%', marginBottom: '20px' }}>
@@ -95,18 +95,18 @@ export default function PageAutentification() {
                                 type="password"
                                 value={nouveauCompte.password}
                                 onChange={(e)=>setNouveauCompte({...nouveauCompte,password:e.target.value})}
-                                style={{ backgroundColor: '#ff9600', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
                         <Button
                             type="primary"
                             onClick={handleNouveauCompteButtonClick}
-                            style={{ backgroundColor: '#ff9600', borderRadius: '20px', minWidth: '30%', minHeight: '50px', padding: '10px' }}
+                            style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', minWidth: '30%', minHeight: '50px', padding: '10px' }}
                         >
                             créer un compte
                         </Button>
                         <p style={{ marginTop: '50px', fontStyle: 'italic' }}>
-                            Déjà un compte ? <a onClick={() => newCompteOrConnection("connction")} style={{ color: '#ff9600', cursor: 'pointer' }}>Se connecter</a>
+                            Déjà un compte ? <a onClick={() => newCompteOrConnection("connction")} style={{ color: '#BEC9CB', cursor: 'pointer' }}>Se connecter</a>
                         </p>
                     </>
                 )}
