@@ -28,7 +28,6 @@ export default function NavBar() {
                 >
                     <Option value="/">Page d'Authentification</Option>
                     <Option value="/bibliotheque">Bibliothèque</Option>
-                    <Option value="/memoireDetail">Mémoire Détail</Option>
                     <Option value="/memoire">Mémoire</Option>
                     <Option value="/memoire-lecture">Lecture de Mémoire</Option>
                     <Option value="/profil">Profil</Option>

@@ -11,11 +11,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "antd/dist/reset.css"; // Importer les styles d'Ant Design
 import PageAutentification from "./front/PageAutentification.tsx";
 import PageBibliotheque from "./front/PageBibliotheque.tsx";
-import PageMemoireDetail from "./front/PageMemoireDetail.tsx";
 import PageMemoire from "./front/PageMemoire.tsx";
 import PageMemoireLecture from "./front/PageMemoireLecture.tsx";
 import PageProfile from "./front/PageProfile.tsx";
-import NavBar from "./front/composants/Navbar.tsx";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const { Header, Content, Sider } = Layout;
@@ -60,7 +58,6 @@ const MainLayout = () => {
               >
                 <Option value="/">Page d'Authentification</Option>
                 <Option value="/bibliotheque">Bibliothèque</Option>
-                <Option value="/memoireDetail">Mémoire Détail</Option>
                 <Option value="/memoire">Mémoire</Option>
                 <Option value="/memoire-lecture">Lecture de Mémoire</Option>
                 <Option value="/profil">Profil</Option>
@@ -118,10 +115,6 @@ const MainLayout = () => {
               <div style={{ backgroundColor: "#F8F8F8", margin:"10px",borderRadius:"10px"}}>
                 <Routes>
                   <Route path="/bibliotheque" element={<PageBibliotheque />} />
-                  <Route
-                    path="/memoireDetail"
-                    element={<PageMemoireDetail />}
-                  />
                   <Route path="/memoire" element={<PageMemoire />} />
                   <Route
                     path="/memoire-lecture"

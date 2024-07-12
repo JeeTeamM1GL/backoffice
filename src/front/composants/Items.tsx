@@ -96,12 +96,12 @@ export function Imputs({ items, alignement = "Y" }: ImputsProps) {
 }
 
 
-export function Memoire(memoire: { id: string | number, nom: string, anneeScolaire: string, classe: string, filiere: string, image: string }) {
+export function Memoire(memoire: Memoire) {
   const [modal, contextHolder] = Modal.useModal();
   const [visible, setVisible] = useState<boolean>(false);
   return (
     <>
-      <div onClick={() => setVisible(true)} key={memoire.id ?? new Date().getTime()} style={{ borderRadius:"10px", backgroundColor: '#ff9600', maxHeight: '300px', textAlign: 'center', minWidth: "150px", maxWidth: "160px", margin: "10px", marginBottom: "20px" }}>
+      <div onClick={() => setVisible(true)} key={memoire.id ?? new Date().getTime()} style={{ borderRadius: "10px", backgroundColor: '#ff9600', maxHeight: '300px', textAlign: 'center', minWidth: "150px", maxWidth: "160px", margin: "10px", marginBottom: "20px", boxShadow: '5px 4px 2px -2px gray' }}>
         {memoire.image ? <img src={memoire.image} alt="image" width={"70px"} height={"70px"} /> :
           <center>
             <div style={{ backgroundColor: '#0077ff', height: '130px', textAlign: 'center', minWidth: "120px", maxWidth: "70px", margin: "10px" }}>
@@ -110,18 +110,19 @@ export function Memoire(memoire: { id: string | number, nom: string, anneeScolai
           </center>}
 
         <div style={{ fontSize: "15px", margin: "10px" }}>
-          <p>{memoire.nom === "" ? "non-mentionné" : memoire.nom}</p>
-          <p>{memoire.anneeScolaire === "" ? "non-mentionné" : memoire.anneeScolaire}</p>
-          <p>{`${memoire.classe === "" ? "non-mentionné" : memoire.classe} - ${memoire.filiere === "" ? "non-mentionné" : memoire.filiere}`}</p>
+          <p>{memoire.titre !== "" ? memoire.titre : "non-mentionné"}</p>
+          <p>{memoire.annee !== "" ? memoire.annee : "non-mentionné"}</p>
+          {/* <p>{`${memoire. === "" ? "non-mentionné" : memoire.classe} - ${memoire.filiere === "" ? "non-mentionné" : memoire.filiere}`}</p> */}
         </div>
 
       </div>
       <div>
         <Modal open={visible} onCancel={() => setVisible(false)} footer={null}>
-          <h2>{memoire.nom}</h2>
-          <p>Année Scolaire: {memoire.anneeScolaire}</p>
-          <p>Classe: {memoire.classe}</p>
-          <p>Filière: {memoire.filiere}</p>
+          <h2>{memoire.titre}</h2>
+          <p>Resumé:{memoire.description ?? "non mentionné"}</p>
+          <p>Année Scolaire: {memoire.annee ?? "non mentionné"}</p>
+          {/* <p>Classe: {memoire.classe}</p>
+          <p>Filière: {memoire.filiere}</p> */}
           {/* Ajoutez plus de détails ici si nécessaire */}
         </Modal>
       </div>
