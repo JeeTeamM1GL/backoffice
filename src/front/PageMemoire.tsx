@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Input, Select, Pagination } from 'antd';
+import { Button, Input, Select, Pagination, Card } from 'antd';
 import NavBar from './composants/Navbar.tsx';
 import { Memoire } from './composants/Items.tsx';
 
@@ -52,7 +52,7 @@ export default function PageMemoire() {
     const currentMemoires = memoires.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
     return (
-        <>
+        <Card>
 
             <div style={{ padding: '20px'}}>
                 <div style={{ backgroundColor: '#BEC9CB', padding: '20px', display: 'flex' }}>
@@ -101,6 +101,6 @@ export default function PageMemoire() {
                     />
                 </div>
             </div>
-        </>
+        </Card>
     );
 }

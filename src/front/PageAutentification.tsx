@@ -3,7 +3,7 @@ import { Button, Input } from 'antd';
 import logo from "../asset/logo.png";
 import { useNavigate } from 'react-router-dom';
 
-export default function PageAutentification() {
+function PageAutentification() {
     const [connection, setConnection] = useState({ login: "", password: "" });
     const [nouveauCompte, setNouveauCompte] = useState({ nom: "", prenon: "", login: "", password: "" });
     const [view, setView] = useState("connction");
@@ -114,3 +114,5 @@ export default function PageAutentification() {
         </div>
     );
 }
+
+export default PageAutentification;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Pagination } from 'antd';
+import { Card, Input, Pagination } from 'antd';
 import NavBar from './composants/Navbar.tsx';
 import { Memoire } from '../front/composants/Items.tsx';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ const memoires = Array.from({ length: 60 }).map((_, index) => ({
 
 const ITEMS_PER_PAGE = 18; // Nombre d'items par page
 
-export default function PageModifierAjouterMemoire() {
+export default function PageBibliotheque() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -27,7 +27,7 @@ export default function PageModifierAjouterMemoire() {
   const currentMemoires = memoires.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
-    <>
+    <Card>
       <div style={{ display: 'flex', height: '100vh' }}>
         <div style={{ flex: 4, padding: '20px' }}>
           <h2>Liste des memoires</h2>
@@ -46,6 +46,6 @@ export default function PageModifierAjouterMemoire() {
           />
         </div>
       </div>
-    </>
+    </Card>
   );
 }
