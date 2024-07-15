@@ -7,6 +7,9 @@ export const getBreadCrumbLabel = (item : string) => {
         case "home":
             label = "Accueil"
             break;
+        case "categories":
+            label = "Catégories"
+            break;
         case "memoires":
             label = "Mémoires"
             break;

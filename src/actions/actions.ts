@@ -1,4 +1,4 @@
-import { API_URL } from "../constants/environment.constants";
+import { API_URL } from "../constants/environment.constants.ts";
 import axios from "axios";
 import { message } from "antd";
 
@@ -6,7 +6,8 @@ export const getActions = async (endpoint : string) => {
     try {
         const response = await axios.get(`${API_URL}${endpoint}` , {
             headers : {
-                Authorization : `Bearer ${JSON.parse(String(sessionStorage.getItem("userConnected")))}`
+                // "Content-Type" : "application/json",
+                // Authorization : `Bearer ${JSON.parse(String(sessionStorage.getItem("userConnected")))}`
             }
         });
         return response; 

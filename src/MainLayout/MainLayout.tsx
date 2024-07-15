@@ -1,4 +1,4 @@
-import { BellOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LaptopOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { AppleOutlined, BellOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LaptopOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Breadcrumb, Button, Dropdown, Flex, Input, Layout, Menu, Select, Tooltip, Typography } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
@@ -77,6 +77,13 @@ function MainLayout() {
                     onClick: () => { navigate("/layout/home") },
                 },
                 {
+                    key: 'categories',
+                    icon: <AppleOutlined />,
+                    label: "Catégories",
+                    title: "Catégories",
+                    onClick: () => { navigate("/layout/categories") }
+                },
+                {
                     key: 'memoires',
                     icon: <FileOutlined />,
                     label: "Mémoires",
@@ -125,6 +132,9 @@ function MainLayout() {
                 break;
             case "memoires":
                 setCurrentSelectedKeys("memoires");
+                break;
+            case "categories":
+                setCurrentSelectedKeys("categories");
                 break;
             case "memoire-lecture":
                 setCurrentSelectedKeys("memoires");

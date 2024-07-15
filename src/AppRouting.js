@@ -7,6 +7,7 @@ import PageBibliotheque from "./front/PageBibliotheque.tsx";
 import PageProfile from "./front/PageProfile.tsx";
 import Home from "./pages/Home/Home.tsx";
 import NotFound from "./pages/NotFound/NotFound.tsx";
+import Categories from "./pages/Categories/Categories.tsx";
 
 
 export const routes = createBrowserRouter([
@@ -40,6 +41,10 @@ export const routes = createBrowserRouter([
                     {
                         path : "home",
                         element : <Home />
+                    },
+                    {
+                        path : "categories",
+                        element : <Categories />
                     },
                     {
                         path : "memoires",

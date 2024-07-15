@@ -5,5 +5,8 @@ export const endpoints = {
         DELETE : "" ,
         LIST : "/users"
     },
-    memoires : {}
+    categories : {
+        LIST : "/api/Category"
+    },
+    memoires : {},
 }
