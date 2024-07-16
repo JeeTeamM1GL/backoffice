@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'antd';
-import logo from "../asset/logo.png";
+import logo from "../../asset/logo.png";
 import { useNavigate } from 'react-router-dom';
 
 function Autentification() {
@@ -12,12 +12,12 @@ function Autentification() {
 
     const handleConncetionButtonClick = () => {
         alert('Login: '+ connection.login +' Password: '+ connection.password);
-        n("/bibliotheque")
+        n("/layout/home")
     };
     const handleNouveauCompteButtonClick= () => {
         alert(JSON.stringify(nouveauCompte))
         n(0)
-    }
+    };
     const newCompteOrConnection = (value) => {
         setView(value);
     };

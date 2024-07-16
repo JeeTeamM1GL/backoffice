@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Input, Select, Pagination, Card } from 'antd';
 
-import { Memoire } from '../../front/composants/Items.tsx';
+import { Memoire as ItemMemoire} from '../../front/composants/Items.tsx';
 
 const { Option } = Select;
 
@@ -89,7 +89,7 @@ export default function Memoire() {
                 <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center' }}>
                     <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", maxHeight: "70%", overflow: "auto" }}>
                         {currentMemoires.map((memoire, index) => (
-                            <Memoire key={index} {...memoire} />
+                            <ItemMemoire body={memoire}  />
                         ))}
                     </div>
                     <Pagination

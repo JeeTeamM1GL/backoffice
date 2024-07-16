@@ -1,153 +1,155 @@
-// Phone Interface
-interface Phone {
-    indicatif: string;
-    phoneNumber: string;
+export interface IAdmin extends IAbstractEntity {
+    lastname?: string;
+    firstname?: string;
+    username?: string;
+    password?: string;
+}
+export interface ICommentaire extends IAbstractEntity {
+    texte?: string;
+    datePublication?: Date;
+    memoire?: IMemoire;
+    password?: ILecteur;
 }
 
-// User Interface
-interface User {
-    id: string;
-    firstname: string;
-    lastname: string;
-    email: string;
-    phone: Phone;
-    password: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
+
+export interface IAbstractEntity {
+    id?: number;
+    createdAt?: string;
+    updateAt?: string;
+    isActive?: boolean;
 }
 
-// Bibliothecaire Interface
-interface Bibliothecaire extends User { }
-
-// Administrateur Interface
-interface Administrateur extends User { }
-
-// Auteur Interface
-interface Auteur extends User {
-    attribute1: string;
+// Phone export interface
+export interface IPhone {
+    indicatif?: string;
+    phoneNumber?: string;
 }
 
-// Lecteur Interface
-interface Lecteur extends User {
-    isMember: boolean;
-    consulter(): void;
-    liker(): void;
-    commenter(): void;
+// User export interface
+export interface IUser extends IAbstractEntity {
+    firstname?: string;
+    lastname?: string;
+    email?: string;
+    phone?: IPhone;
+    password?: string;
+
 }
 
-// Encadreur Interface
-interface Encadreur {
-    specialite: string;
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
+// Bibliothecaire export interface
+export interface IBibliothecaire extends IUser, IAbstractEntity { }
+
+// Administrateur export interface
+export interface IAdministrateur extends IUser, IAbstractEntity { }
+
+// Auteur export interface
+export interface IAuteur extends IUser, IAbstractEntity { }
+
+// Lecteur export interface
+export interface ILecteur extends IUser, IAbstractEntity {
+    isMember?: boolean;
+}
+
+// Encadreur export interface
+export interface IEncadreur extends IAbstractEntity {
+    specialite?: string;
+    memoires?: IMemoire[];
 }
 
 // GradeJury Enum
-enum GradeJury {
-    President = "PRESIDENT",
-    Rapporteur = "RAPPORTEUR",
-    Examinateur = "EXAMINATEUR"
+export enum GradeJury {
+    PRESIDENT,
+    RAPPORTEUR,
+    EXAMINATEUR
 }
 
-// Jury Interface
-interface Jury {
-    id: string;
-    grade: GradeJury;
-    specialite: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
+// Jury export interface
+export interface IJury extends IAbstractEntity {
+    membre1?: string;
+    membre2?: string;
+    membre3?: string;
+}
+export interface IMembreJury extends IAbstractEntity {
+    grade?: GradeJury;
+    specialite?: string;
 }
 
-// Classe Interface
-interface Classe {
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
+// Classe export interface
+export interface IClasse extends IAbstractEntity {
+    nom?: string;
+    memoires?: IMemoire[];
 }
 
-// ClassFiliere Interface
-interface ClassFiliere {
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
+// ClassFiliere export interface
+export interface IClassFiliere extends IAbstractEntity { }
+
+// Filiere export interface
+export interface IFiliere extends IAbstractEntity {
+    intitule?: string;
+    memoires?: IMemoire[];
 }
 
-// Filiere Interface
-interface Filiere {
-    id: string;
-    nom: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
+// Memoire export interface
+export interface IMemoire extends IAbstractEntity {
+    image?: string;
+    titre?: string;
+    description?: string;
+    dateSoutenance?: Date;
+    document?: string;
+    auteur?: IAuteur;
+    encadreur?: IEncadreur;
+    jury?: IJury;
+    year?: string;
+    categorie?: ICategorie;
+    filiere?: IFiliere;
+    classe?: IClasse;
 }
 
-// Memoire Interface
-interface Memoire {
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-    numMemoire: string;
-    image: string;
-    titre: string;
-    description: string;
-    dateSoutenance: Date;
-    document: string;
-    auteur: Auteur
-    encadreur: Encadreur;
-    jury: Jury;
-    annee: string;
+// Categorie export interface
+export interface ICategorie extends IAbstractEntity {
+    nom?: string;
+    description?: string;
+    memoires?: IMemoire[];
+}
+export interface PartageMemoireDbContext extends IAbstractEntity {
+    Admins?: IAdministrateur[];
+    Bibliothecaires?: IBibliothecaire[];
+    Lecteurs?: ILecteur[];
+    Encadreurs?: IEncadreur[];
+    Filieres?: IFiliere[];
+    Classes?: IClasse[];
+    Categories?: ICategorie[];
+    Memoires?: IMemoire[];
+    Commentaires?: ICommentaire[];
+    Likes?: ILike[];
+    HistoriqueConsultations?: IHistoriqueConsultation[];
+    TdErreurs?: any[];
+}
+// HistoriqueConsultation export interface
+export interface IHistoriqueConsultation extends IAbstractEntity {
+    dateConsultation?: Date;
+    memoire?: IMemoire;
+    lecteur?: ILecteur;
 }
 
-// Categorie Interface
-interface Categorie {
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    isActive: boolean;
-    nom: string;
-    description: string;
-    memoires : Memoire[];
+// Commentaire export interface
+export interface ICommentaire extends IAbstractEntity {
+    texte?: string;
+    datePublication?: Date;
 }
 
-// HistoriqueConsultation Interface
-interface HistoriqueConsultation {
-    id: string;
-    dateConsultation: Date;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
+// Likes export interface
+export interface ILike extends IAbstractEntity {
+    nombreLikes?: number;
+    memoire?: IMemoire;
+    lecteur?: ILecteur;
 }
 
-// Commentaire Interface
-interface Commentaire {
-    id: string;
-    texte: string;
-    datePublication: Date;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-}
+// Abonnement export interface
+export interface IAbonnement extends IAbstractEntity { }
 
-// Likes Interface
-interface Likes {
-    id: string;
-    nombreLikes: number;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-}
-
-// Abonnement Interface
-interface Abonnement {
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
+export interface ITdErreur {
+    id?: number;
+    dateErreur?: Date | null;
+    descriptionErreur?: string;
+    titreErreur?: string;
 }

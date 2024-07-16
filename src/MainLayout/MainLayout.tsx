@@ -5,10 +5,6 @@ import Sider from 'antd/es/layout/Sider';
 import SubMenu from 'antd/es/menu/SubMenu';
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import PageBibliotheque from '../front/PageBibliotheque';
-import PageMemoire from '../front/PageMemoire';
-import PageMemoireLecture from '../front/PageMemoireLecture';
-import PageProfile from '../front/PageProfile';
 import './MainLayout.scss'
 import { getBreadCrumbLabel } from '../utils/helpers.ts';
 
@@ -49,9 +45,8 @@ function MainLayout() {
             key: 2,
             icon: <LogoutOutlined />,
             label: "Déconnexion",
-            onClick: () => {
-                console.log("Logout")
-            }
+            onClick: () => navigate("/login")
+
         },
     ]
 
@@ -179,7 +174,7 @@ function MainLayout() {
                     //     })
                     // }
                     breadCItems.push({
-                        title: <Link to={link} > { getBreadCrumbLabel(element)} </Link>
+                        title: <Link to={link} > {getBreadCrumbLabel(element)} </Link>
                     })
                 }
             }
@@ -196,15 +191,15 @@ function MainLayout() {
 
     return (
         <Layout style={{ minHeight: "100vh" }}>
-            <Header className="header" style={{ backgroundColor: "transparent", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0px 24px", height: 56 , marginLeft: screenWidth > 992 ? (collapsed ? "6%" : "20%") : 0 }} >
+            <Header className="header" style={{ backgroundColor: "transparent", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0px 24px", height: 56, marginLeft: screenWidth > 992 ? (collapsed ? "6%" : "20%") : 0 }} >
 
                 <div style={{ display: "flex", justifyContent: "start", alignItems: "center" }} >
                     {
                         React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                             className: 'trigger default-layout-ham',
                             onClick: () => setCollapsed(!collapsed),
-                            style:{
-                                fontSize : 18
+                            style: {
+                                fontSize: 18
                             }
                         })
                     }
@@ -291,8 +286,8 @@ function MainLayout() {
                         {/* <Title level={5} > PARTAGE MEMOIRE </Title> */}
                         <img src={require('./../asset/logo.png')} height={50} width={50} />
                         {
-                            !collapsed  &&
-                            <Text> <strong style={{fontSize : 18}} >ISI MEMORY</strong> </Text>
+                            !collapsed &&
+                            <Text> <strong style={{ fontSize: 18 }} >ISI MEMORY</strong> </Text>
                         }
                     </div>
                     {menu}

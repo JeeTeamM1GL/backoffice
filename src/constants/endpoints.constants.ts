@@ -6,7 +6,21 @@ export const endpoints = {
         LIST : "/users"
     },
     categories : {
+        ADD : "/",
+        UPDATE : "",
+        DELETE : "" ,
         LIST : "/api/Category"
     },
-    memoires : {},
+    memoires : {
+        ADD : "/",
+        UPDATE : "",
+        DELETE : "" ,
+        LIST : "/api/memoire"
+    },
+    bibliotheque:{
+        ADD : "/",
+        UPDATE : "",
+        DELETE : "" ,
+        LIST : "/api/bibliotheque"
+    }
 }

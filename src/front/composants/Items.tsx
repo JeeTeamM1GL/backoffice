@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Alignement from './Alignement.tsx';
 import logo from '../../asset/logo.png'
 import { useNavigate } from 'react-router-dom';
-import { IMemoire } from "../Entities/Entity.tsx"
+import { IMemoire } from "../../interfaces/interfaces.ts"
 const { Option } = Select;
 
 interface ButtonsProps {
@@ -105,7 +105,7 @@ export function Memoire ({body}) {//IMemoire
   return (
     <>
       <div onClick={() => setVisible(true)} key={body.id ?? new Date().getTime()} style={{ borderRadius: "10px", backgroundColor: '#ff9600', maxHeight: '300px', textAlign: 'center', minWidth: "150px", maxWidth: "160px", margin: "10px", marginBottom: "20px", boxShadow: '5px 4px 2px -2px gray' }}>
-        {body.image ? <img src={body.image} alt="image" width={"70px"} height={"70px"} /> :
+        {body.image ? <img src={body.image ?? logo} alt="image" width={"70px"} height={"70px"} /> :
           <center>
             <div style={{ backgroundColor: '#0077ff', height: '130px', textAlign: 'center', minWidth: "120px", maxWidth: "70px", margin: "10px" }}>
               <img src={logo} alt="image" width={"70px"} height={"70px"} />
