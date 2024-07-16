@@ -1,10 +1,9 @@
-import { AppleOutlined, BellOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LaptopOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Breadcrumb, Button, Dropdown, Flex, Input, Layout, Menu, Select, Tooltip, Typography } from 'antd';
+import { AppleOutlined, BellOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { Affix, Avatar, Breadcrumb, Button, Dropdown, Layout, Menu, Select, Tooltip, Typography } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
-import SubMenu from 'antd/es/menu/SubMenu';
 import React, { useEffect, useState } from 'react'
-import { Link, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './MainLayout.scss'
 import { getBreadCrumbLabel } from '../utils/helpers.ts';
 
@@ -155,7 +154,7 @@ function MainLayout() {
         const splitPathname = pathname.split("/");
         const breadCItems: object[] = [
             {
-                title: <Link to="/home" > <HomeOutlined /> </Link>
+                title: <Link to="/layout/home" > <HomeOutlined /> </Link>
             }
         ]
 
@@ -191,30 +190,40 @@ function MainLayout() {
 
     return (
         <Layout style={{ minHeight: "100vh" }}>
-            <Header className="header" style={{ backgroundColor: "transparent", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0px 24px", height: 56, marginLeft: screenWidth > 992 ? (collapsed ? "6%" : "20%") : 0 }} >
+            <Affix offsetTop={0}>
+                <Header className="header" style={{
+                    backgroundColor: "transparent",
+                    backdropFilter: "blur(10px)", // Utilisez backdropFilter pour appliquer le flou à l'arrière-plan
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "0px 24px",
+                    height: 56,
+                    marginLeft: screenWidth > 992 ? (collapsed ? "6%" : "20%") : 0
+                }} >
 
-                <div style={{ display: "flex", justifyContent: "start", alignItems: "center" }} >
-                    {
-                        React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                            className: 'trigger default-layout-ham',
-                            onClick: () => setCollapsed(!collapsed),
-                            style: {
-                                fontSize: 18
-                            }
-                        })
-                    }
+                    <div style={{ display: "flex", justifyContent: "start", alignItems: "center" }} >
+                        {
+                            React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                                className: 'trigger default-layout-ham',
+                                onClick: () => setCollapsed(!collapsed),
+                                style: {
+                                    fontSize: 18
+                                }
+                            })
+                        }
 
-                    {/* {
+                        {/* {
                         React.createElement(MenuFoldOutlined, {
                             className: 'trigger not-default-layout-ham',
                             onClick: () => setOpen(true),
                         })
                     } */}
-                    {/* <Input prefix={<SearchOutlined />} width={600} placeholder='Entrer votre recherche' /> */}
-                </div>
-                <div className='header-right' >
+                        {/* <Input prefix={<SearchOutlined />} width={600} placeholder='Entrer votre recherche' /> */}
+                    </div>
+                    <div className='header-right' >
 
-                    {/* {
+                        {/* {
                         isDark ?
                         <Tooltip placement="bottomRight" title={<>Mode Sombre</>} >
                             <Button type='text' icon={<TbMoonStars size={24} /> } onClick={()=> handleLightMode()} />
@@ -225,24 +234,24 @@ function MainLayout() {
                         </Tooltip>
                     }   &nbsp;&nbsp;&nbsp; */}
 
-                    <Tooltip placement="bottomRight" title={<>Notifications</>}  >
-                        <Button type='text' icon={<BellOutlined style={{ fontSize: 24 }} />} /*onClick={()=>{setOpenDrawer(true)}}*/ />
-                    </Tooltip>
-                    &nbsp;&nbsp;&nbsp;
+                        <Tooltip placement="bottomRight" title={<>Notifications</>}  >
+                            <Button type='text' icon={<BellOutlined style={{ fontSize: 24 }} />} /*onClick={()=>{setOpenDrawer(true)}}*/ />
+                        </Tooltip>
+                        &nbsp;&nbsp;&nbsp;
 
-                    <Dropdown
-                        menu={{
-                            items: profilMenu
-                        }}
-                    >
-                        <Button type='text' icon={<Avatar size="small" icon={<UserOutlined />} style={{ cursor: 'pointer' }} />} >
-                            <Text>  {userConnected ? userConnected?.firstName : "user"} </Text>
-                        </Button>
-                    </Dropdown>
+                        <Dropdown
+                            menu={{
+                                items: profilMenu
+                            }}
+                        >
+                            <Button type='text' icon={<Avatar size="small" icon={<UserOutlined />} style={{ cursor: 'pointer' }} />} >
+                                <Text>  {userConnected ? userConnected?.firstName : "user"} </Text>
+                            </Button>
+                        </Dropdown>
 
-                </div>
-                {/* <div className="logo" /> */}
-                {/* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}style={{display: "flex",justifyContent:"flex-end"}}>
+                    </div>
+                    {/* <div className="logo" /> */}
+                    {/* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}style={{display: "flex",justifyContent:"flex-end"}}>
                     <Menu.Item key="1">nav 1</Menu.Item>
                     <Menu.Item key="2">nav 2</Menu.Item>
                     <Menu.Item key="3">nav 3</Menu.Item>
@@ -260,7 +269,8 @@ function MainLayout() {
                     </Select>
                     </Menu.Item>
                 </Menu> */}
-            </Header>
+                </Header>
+            </Affix>
             <Layout>
                 <Sider
                     theme='light'
@@ -322,17 +332,13 @@ function MainLayout() {
                     </Menu> */}
                 </Sider>
                 <Layout
-                    style={{ /*padding: "0 24px 24px" ,*/
-                        padding: 24,
+                    style={{
+                        padding: "8px 24px",
                         backgroundColor: "transparent",
-                        /*backgroundColor:"#BEC9CB",*/
-                        marginLeft: screenWidth > 992 ? (collapsed ? "6%" : "20%") : 0
+                        marginLeft: screenWidth > 992 ? (collapsed ? "6%" : "20%") : 0,
+                        minHeight: "100vh"
                     }}>
-                    {/* <Breadcrumb style={{ margin: "16px 0" }}>
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
-                    </Breadcrumb> */}
+
                     <Breadcrumb items={breadCrumbItems as any} />
                     <Content
                         className="site-layout-background"
@@ -343,17 +349,9 @@ function MainLayout() {
                             minHeight: 280,
                         }}
                     >
-                        <div /*style={{ backgroundColor: "#F8F8F8", margin:"10px",borderRadius:"10px"}}*/>
+                        <div >
                             <Outlet />
-                            {/* <Routes>
-                            <Route path="/bibliotheque" element={<PageBibliotheque />} />
-                            <Route path="/memoire" element={<PageMemoire />} />
-                            <Route
-                                path="/memoire-lecture"
-                                element={<PageMemoireLecture />}
-                            />
-                            <Route path="/profil" element={<PageProfile />} />
-                        </Routes> */}
+
                         </div>
                     </Content>
                 </Layout>

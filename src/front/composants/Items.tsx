@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Alignement from './Alignement.tsx';
 import logo from '../../asset/logo.png'
 import { useNavigate } from 'react-router-dom';
-import { IMemoire } from "../../interfaces/interfaces.ts"
+import { IMemoire } from '../../interfaces/interfaces.ts';
 const { Option } = Select;
 
 interface ButtonsProps {
@@ -98,38 +98,42 @@ export function Imputs({ items, alignement = "Y" }: ImputsProps) {
 }
 
 
-export function Memoire ({body}) {//IMemoire
-  const [modal, contextHolder] = Modal.useModal();
+export function Memoire({ body }: { body: IMemoire }) {
   const [visible, setVisible] = useState<boolean>(false);
-  const n = useNavigate()
+  const [theBody, setTheBody] = useState<IMemoire>(body);
+  const n = useNavigate();
+
   return (
     <>
-      <div onClick={() => setVisible(true)} key={body.id ?? new Date().getTime()} style={{ borderRadius: "10px", backgroundColor: '#ff9600', maxHeight: '300px', textAlign: 'center', minWidth: "150px", maxWidth: "160px", margin: "10px", marginBottom: "20px", boxShadow: '5px 4px 2px -2px gray' }}>
-        {body.image ? <img src={body.image ?? logo} alt="image" width={"70px"} height={"70px"} /> :
+      <div onClick={() => setVisible(true)} key={theBody.id ?? new Date().getTime()} style={{ borderRadius: "10px", backgroundColor: '#ff9600', maxHeight: '300px', textAlign: 'center', minWidth: "150px", maxWidth: "160px", margin: "10px", marginBottom: "20px", boxShadow: '5px 4px 2px -2px gray' }}>
+        {theBody.image ? (
+          
+          <img src={theBody.image ?? logo} alt="image" width={"100px"} height={"120px"} />
+        ) : (
           <center>
             <div style={{ backgroundColor: '#0077ff', height: '130px', textAlign: 'center', minWidth: "120px", maxWidth: "70px", margin: "10px" }}>
               <img src={logo} alt="image" width={"70px"} height={"70px"} />
             </div>
-          </center>}
+          </center>
+        )}
 
         <div style={{ fontSize: "15px", margin: "10px" }}>
-          <p>{body.titre ?? "non-mentionné"}</p>
-          <p>{body.annee ?? "non-mentionné"}</p>
-          {/* <p>{`${body. === "" ? "non-mentionné" : body.classe} - ${body.filiere === "" ? "non-mentionné" : body.filiere}`}</p> */}
+          <p>{theBody.titre ?? "non-mentionné"}</p>
+          <p>{theBody.year ?? "non-mentionné"}</p>
         </div>
-
       </div>
       <div>
         <Modal open={visible} onCancel={() => setVisible(false)} footer={null}>
-          <h2>{body.titre ?? "titre non mentionné"}</h2>
-          <p>Resumé:{body.description ?? "non mentionné"}</p>
-          <p>Année Scolaire: {body.annee ?? "non mentionné"}</p>
-          <p>Classe: {body.classe ?? "non mentionné"}</p>
-          <p>Filière: {body.filiere ?? "non mentionné"}</p>
-          <Input type="button" value={"Ouvrir"} onClick={() => n("/layout/memoires/body-lecture")} />
+          <h2 style={{ color: "#0077ff" }}>{theBody.titre ?? "Titre non mentionné"}</h2>
+          <div>
+            <p><b>Resumé:</b></p>
+            <p style={{ marginTop: "0px" }}>{theBody.description ?? "non mentionné"}</p>
+          </div>
+
+          <small>Classe: {theBody.classe?.nom ?? "non mentionné"} - Filière: {theBody.filiere?.intitule ?? "non mentionné"} {"(" + (theBody.year ?? "non mentionné") + ")"}</small>
+          <Input type="button" value="Ouvrir" onClick={() => n(`/layout/memoires/${theBody.id}/lecture`)} style={{ marginTop: "20px" }} />
         </Modal>
       </div>
     </>
-
   );
 }

@@ -14,8 +14,8 @@ export interface ICommentaire extends IAbstractEntity {
 
 export interface IAbstractEntity {
     id?: number;
-    createdAt?: string;
-    updateAt?: string;
+    createdAt?: Date;
+    updateAt?: Date;
     isActive?: boolean;
 }
 
@@ -109,6 +109,12 @@ export interface ICategorie extends IAbstractEntity {
     nom?: string;
     description?: string;
     memoires?: IMemoire[];
+}
+
+export interface ICategorieForm  {
+    nom?: string;
+    description?: string;
+    
 }
 export interface PartageMemoireDbContext extends IAbstractEntity {
     Admins?: IAdministrateur[];
