@@ -19,6 +19,7 @@ import NavBar from "./front/composants/Navbar.tsx";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const { Header, Content, Sider } = Layout;
+const { Option } = Select;
 const { SubMenu } = Menu;
 
 const App = () => (
