@@ -1,8 +1,8 @@
 import { Button } from 'antd';
 import React from 'react';
-import NavBar from './composants/Navbar.tsx';
 
-export default function PageMemoireDetail() {
+
+export default function MemoireLecture() {
     return (
         <><div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
             <div style={{ backgroundColor: '#BEC9CB', padding: '20px', textAlign: 'right' }}>

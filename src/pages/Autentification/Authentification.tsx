@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'antd';
-import logo from "../asset/logo.png";
+import logo from "../../asset/logo.png";
 import { useNavigate } from 'react-router-dom';
 
-export default function PageAutentification() {
+function Autentification() {
     const [connection, setConnection] = useState({ login: "", password: "" });
     const [nouveauCompte, setNouveauCompte] = useState({ nom: "", prenon: "", login: "", password: "" });
     const [view, setView] = useState("connction");
@@ -12,12 +12,12 @@ export default function PageAutentification() {
 
     const handleConncetionButtonClick = () => {
         alert('Login: '+ connection.login +' Password: '+ connection.password);
-        n("/bibliotheque")
+        n("/layout/home")
     };
     const handleNouveauCompteButtonClick= () => {
         alert(JSON.stringify(nouveauCompte))
         n(0)
-    }
+    };
     const newCompteOrConnection = (value) => {
         setView(value);
     };
@@ -114,3 +114,5 @@ export default function PageAutentification() {
         </div>
     );
 }
+
+export default Autentification;

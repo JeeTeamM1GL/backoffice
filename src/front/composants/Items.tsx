@@ -2,6 +2,8 @@ import { Button, Input, Select, Table, Modal } from 'antd';
 import React, { useState } from 'react';
 import Alignement from './Alignement.tsx';
 import logo from '../../asset/logo.png'
+import { useNavigate } from 'react-router-dom';
+import { IMemoire } from "../../interfaces/interfaces.ts"
 const { Option } = Select;
 
 interface ButtonsProps {
@@ -96,13 +98,14 @@ export function Imputs({ items, alignement = "Y" }: ImputsProps) {
 }
 
 
-export function Memoire(memoire: { id: string | number, nom: string, anneeScolaire: string, classe: string, filiere: string, image: string }) {
+export function Memoire ({body}) {//IMemoire
   const [modal, contextHolder] = Modal.useModal();
   const [visible, setVisible] = useState<boolean>(false);
+  const n = useNavigate()
   return (
     <>
-      <div onClick={() => setVisible(true)} key={memoire.id ?? new Date().getTime()} style={{ borderRadius:"10px", backgroundColor: '#ff9600', maxHeight: '300px', textAlign: 'center', minWidth: "150px", maxWidth: "160px", margin: "10px", marginBottom: "20px" }}>
-        {memoire.image ? <img src={memoire.image} alt="image" width={"70px"} height={"70px"} /> :
+      <div onClick={() => setVisible(true)} key={body.id ?? new Date().getTime()} style={{ borderRadius: "10px", backgroundColor: '#ff9600', maxHeight: '300px', textAlign: 'center', minWidth: "150px", maxWidth: "160px", margin: "10px", marginBottom: "20px", boxShadow: '5px 4px 2px -2px gray' }}>
+        {body.image ? <img src={body.image ?? logo} alt="image" width={"70px"} height={"70px"} /> :
           <center>
             <div style={{ backgroundColor: '#0077ff', height: '130px', textAlign: 'center', minWidth: "120px", maxWidth: "70px", margin: "10px" }}>
               <img src={logo} alt="image" width={"70px"} height={"70px"} />
@@ -110,19 +113,20 @@ export function Memoire(memoire: { id: string | number, nom: string, anneeScolai
           </center>}
 
         <div style={{ fontSize: "15px", margin: "10px" }}>
-          <p>{memoire.nom === "" ? "non-mentionné" : memoire.nom}</p>
-          <p>{memoire.anneeScolaire === "" ? "non-mentionné" : memoire.anneeScolaire}</p>
-          <p>{`${memoire.classe === "" ? "non-mentionné" : memoire.classe} - ${memoire.filiere === "" ? "non-mentionné" : memoire.filiere}`}</p>
+          <p>{body.titre ?? "non-mentionné"}</p>
+          <p>{body.annee ?? "non-mentionné"}</p>
+          {/* <p>{`${body. === "" ? "non-mentionné" : body.classe} - ${body.filiere === "" ? "non-mentionné" : body.filiere}`}</p> */}
         </div>
 
       </div>
       <div>
         <Modal open={visible} onCancel={() => setVisible(false)} footer={null}>
-          <h2>{memoire.nom}</h2>
-          <p>Année Scolaire: {memoire.anneeScolaire}</p>
-          <p>Classe: {memoire.classe}</p>
-          <p>Filière: {memoire.filiere}</p>
-          {/* Ajoutez plus de détails ici si nécessaire */}
+          <h2>{body.titre ?? "titre non mentionné"}</h2>
+          <p>Resumé:{body.description ?? "non mentionné"}</p>
+          <p>Année Scolaire: {body.annee ?? "non mentionné"}</p>
+          <p>Classe: {body.classe ?? "non mentionné"}</p>
+          <p>Filière: {body.filiere ?? "non mentionné"}</p>
+          <Input type="button" value={"Ouvrir"} onClick={() => n("/layout/memoires/body-lecture")} />
         </Modal>
       </div>
     </>

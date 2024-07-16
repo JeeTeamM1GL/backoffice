@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Input, Select, Pagination } from 'antd';
-import NavBar from './composants/Navbar.tsx';
-import { Memoire } from './composants/Items.tsx';
+import { Button, Input, Select, Pagination, Card } from 'antd';
+
+import { Memoire as ItemMemoire} from '../../front/composants/Items.tsx';
 
 const { Option } = Select;
 
@@ -16,7 +16,7 @@ const memoires = Array.from({ length: 60 }).map((_, index) => ({
 
 const ITEMS_PER_PAGE = 18; // Nombre d'items par page
 
-export default function PageMemoire() {
+export default function Memoire() {
     const [filtre, setFiltre] = useState({
         typeDeFiltre: "tout-voir",
         filtrerPar: "jury",
@@ -52,7 +52,7 @@ export default function PageMemoire() {
     const currentMemoires = memoires.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
     return (
-        <>
+        <Card>
 
             <div style={{ padding: '20px'}}>
                 <div style={{ backgroundColor: '#BEC9CB', padding: '20px', display: 'flex' }}>
@@ -89,7 +89,7 @@ export default function PageMemoire() {
                 <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center' }}>
                     <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", maxHeight: "70%", overflow: "auto" }}>
                         {currentMemoires.map((memoire, index) => (
-                            <Memoire key={index} {...memoire} />
+                            <ItemMemoire body={memoire}  />
                         ))}
                     </div>
                     <Pagination
@@ -101,6 +101,6 @@ export default function PageMemoire() {
                     />
                 </div>
             </div>
-        </>
+        </Card>
     );
 }

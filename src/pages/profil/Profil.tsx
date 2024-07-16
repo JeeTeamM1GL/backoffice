@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input, Button, Pagination } from 'antd';
-import NavBar from './composants/Navbar.tsx';
-import { Memoire } from './composants/Items.tsx';
+
+
 
 const memoires = Array.from({ length: 60 }).map((_, index) => ({
   id: index,
@@ -14,7 +14,7 @@ const memoires = Array.from({ length: 60 }).map((_, index) => ({
 
 const ITEMS_PER_PAGE = 6; // Nombre d'items par page
 
-export default function PageProfile() {
+export default function Profil() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (page) => {
@@ -26,7 +26,7 @@ export default function PageProfile() {
 
   return (
     <>
-      <div style={{ display: 'flex', height: '100vh',padding:"5px" }}>
+      <div style={{ display: 'flex', height: '100vh', padding: "5px" }}>
         {/* <div style={{ flex: 1, backgroundColor: '#BEC9CB', padding: '20px', color: '#fff' }}>
           <p>Nom</p>
           <p>Prenom</p>
@@ -36,10 +36,10 @@ export default function PageProfile() {
         <div style={{ flex: 4, padding: '20px' }}>
           <h2>Liste des memoires</h2>
           {/* <Input placeholder="Entrez le nom d'un memoire..." style={{ width: '100%', marginBottom: '20px' }} /> */}
-          <div style={{ display: "flex", flexDirection: "row", maxHeight: "70%", overflowX: "auto",overflowY:"hidden" }}>
-            {currentMemoires.map((memoire, index) => (
-              <Memoire key={index} {...memoire} />
-            ))}
+          <div style={{ display: "flex", flexDirection: "row", maxHeight: "70%", overflowX: "auto", overflowY: "hidden" }}>
+            {/* {currentMemoires.map((memoire, index) => (
+              <Memoire body={undefined}  />
+            ))} */}
           </div>
           <Pagination
             current={currentPage}
