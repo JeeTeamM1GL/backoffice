@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Input, Pagination } from 'antd';
+import { Memoire } from '../../front/composants/Items.tsx';
 import { useNavigate } from 'react-router-dom';
-import { Memoire } from './composants/Items.tsx';
 
 const memoires = Array.from({ length: 60 }).map((_, index) => ({
   id: index,
@@ -33,7 +33,7 @@ export default function PageBibliotheque() {
           <Input placeholder="Entrez le nom d'un memoire..." style={{ width: '100%', marginBottom: '20px' }} />
           <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", maxHeight: "70%", overflow: "auto" }}>
             {currentMemoires.map((memoire, index) => (
-              <Memoire body={undefined}   />
+              <Memoire key={index} {...memoire} />
             ))}
           </div>
           <Pagination

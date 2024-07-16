@@ -1,226 +1,155 @@
-// Phone Interface
-interface Phone {
-    indicatif: string;
-    numeroPhone: string;
-  }
-  
-  // User Interface
-  interface User {
-    id: string;
-    firstname: string;
-    lastname: string;
-    email: string;
-    phone: Phone;
-    password: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-  
-    selectAll(): User[];
-    save(entity: User): void;
-    update(entity: User): void;
-    delete(entity: User): void;
-    getById(id: string): User;
-    login(): void;
-  }
-  
-  // Bibliothecaire Interface
-  interface Bibliothecaire extends User {}
-  
-  // Administrateur Interface
-  interface Administrateur extends User {}
-  
-  // Auteur Interface
-  interface Auteur extends User {
-    attribute1: string;
-  }
-  
-  // Lecteur Interface
-  interface Lecteur extends User {
-    isMember: boolean;
-    consulter(): void;
-    liker(): void;
-    commenter(): void;
-  }
-  
-  // Encadreur Interface
-  interface Encadreur {
-    specialite: string;
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-  
-    selectAll(): Encadreur[];
-    save(entity: Encadreur): void;
-    update(entity: Encadreur): void;
-    delete(entity: Encadreur): void;
-    getById(id: string): Encadreur;
-  }
-  
-  // GradeJury Enum
-  enum GradeJury {
-    PRESIDENT,
-    RAPPORTEUR,
-    EXAMINATEUR
-  }
-  
-  // Jury Interface
-  interface Jury {
-    id: string;
-    grade: GradeJury;
-    specialite: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-  
-    selectAll(): Jury[];
-    save(entity: Jury): void;
-    update(entity: Jury): void;
-    delete(entity: Jury): void;
-    getById(id: string): Jury;
-  }
-  
-  // Classe Interface
-  interface Classe {
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-  
-    selectAll(): Classe[];
-    save(entity: Classe): void;
-    update(entity: Classe): void;
-    delete(entity: Classe): void;
-    getById(id: string): Classe;
-  }
-  
-  // ClassFiliere Interface
-  interface ClassFiliere {
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-  
-    selectAll(): ClassFiliere[];
-    save(entity: ClassFiliere): void;
-    update(entity: ClassFiliere): void;
-    delete(entity: ClassFiliere): void;
-    getById(id: string): ClassFiliere;
-  }
-  
-  // Filiere Interface
-  interface Filiere {
-    id: string;
-    nom: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-  
-    selectAll(): Filiere[];
-    save(entity: Filiere): void;
-    update(entity: Filiere): void;
-    delete(entity: Filiere): void;
-    getById(id: string): Filiere;
-  }
-  
-  // Memoire Interface
-  interface Memoire {
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-    numMemoire: string;
-    image:string;
-    titre: string;
-    description: string;
-    dateSoutenance: Date;
-    document: string;
-    auteur:Auteur
-    encadreur: Encadreur;
-    jury: Jury;
-    annee: string;
-  
-    selectAll(): Memoire[];
-    save(entity: Memoire): void;
-    update(entity: Memoire): void;
-    delete(entity: Memoire): void;
-    getById(id: string): Memoire;
-  }
-  
-  // Categorie Interface
-  interface Categorie {
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-    nom: string;
-    description: string;
-  
-    selectAll(): Categorie[];
-    save(entity: Categorie): void;
-    update(entity: Categorie): void;
-    delete(entity: Categorie): void;
-    getById(id: string): Categorie;
-  }
-  
-  // HistoriqueConsultation Interface
-  interface HistoriqueConsultation {
-    id: string;
-    dateConsultation: Date;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-  
-    selectAll(): HistoriqueConsultation[];
-    save(entity: HistoriqueConsultation): void;
-    update(entity: HistoriqueConsultation): void;
-    delete(entity: HistoriqueConsultation): void;
-    getById(id: string): HistoriqueConsultation;
-  }
-  
-  // Commentaire Interface
-  interface Commentaire {
-    id: string;
-    texte: string;
-    datePublication: Date;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-  
-    selectAll(): Commentaire[];
-    save(entity: Commentaire): void;
-    update(entity: Commentaire): void;
-    delete(entity: Commentaire): void;
-    getById(id: string): Commentaire;
-  }
-  
-  // Likes Interface
-  interface Likes {
-    id: string;
-    nombreLikes: number;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-  
-    selectAll(): Likes[];
-    save(entity: Likes): void;
-    update(entity: Likes): void;
-    delete(entity: Likes): void;
-    getById(id: string): Likes;
-  }
-  
-  // Abonnement Interface
-  interface Abonnement {
-    id: string;
-    creationDate: Date;
-    updateDate: Date;
-    isActive: boolean;
-  
-    selectAll(): Abonnement[];
-    save(entity: Abonnement): void;
-    update(entity: Abonnement): void;
-    delete(entity: Abonnement): void;
-    getById(id: string): Abonnement;
-  }
-  
+export interface IAdmin extends IAbstractEntity {
+  lastname: string;
+  firstname: string;
+  username: string;
+  password: string;
+}
+export interface ICommentaire extends IAbstractEntity {
+  texte: string;
+  datePublication: Date;
+  memoire: IMemoire;
+  password: ILecteur;
+}
+
+
+export interface IAbstractEntity {
+  id: number;
+  createdAt: string;
+  updateAt: string;
+  isActive: boolean;
+}
+
+// Phone export interface
+export interface IPhone{
+  indicatif: string;
+  phoneNumber: string;
+}
+
+// User export interface
+export interface IUser extends IAbstractEntity {
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: IPhone;
+  password: string;
+
+}
+
+// Bibliothecaire export interface
+export interface IBibliothecaire extends IUser, IAbstractEntity { }
+
+// Administrateur export interface
+export interface IAdministrateur extends IUser, IAbstractEntity { }
+
+// Auteur export interface
+export interface IAuteur extends IUser, IAbstractEntity { }
+
+// Lecteur export interface
+export interface ILecteur extends IUser, IAbstractEntity {
+  isMember: boolean;
+}
+
+// Encadreur export interface
+export interface IEncadreur extends IAbstractEntity {
+  specialite: string;
+  memoires: IMemoire[];
+}
+
+// GradeJury Enum
+export enum GradeJury {
+  PRESIDENT,
+  RAPPORTEUR,
+  EXAMINATEUR
+}
+
+// Jury export interface
+export interface IJury extends IAbstractEntity {
+  membre1: string;
+  membre2: string;
+  membre3: string;
+}
+export interface IMembreJury extends IAbstractEntity {
+  grade:GradeJury;
+  specialite: string;
+}
+
+// Classe export interface
+export interface IClasse extends IAbstractEntity {
+  nom: string;
+  memoires: IMemoire[];
+}
+
+// ClassFiliere export interface
+export interface IClassFiliere extends IAbstractEntity { }
+
+// Filiere export interface
+export interface IFiliere extends IAbstractEntity {
+  intitule: string;
+  memoires: IMemoire[];
+}
+
+// Memoire export interface
+export interface IMemoire extends IAbstractEntity {
+  image: string;
+  titre: string;
+  description: string;
+  dateSoutenance: Date;
+  document: string;
+  auteur: IAuteur;
+  encadreur: IEncadreur;
+  jury: IJury;
+  year: string;
+  categorie: ICategorie;
+  filiere: IFiliere;
+  classe: IClasse;
+}
+
+// Categorie export interface
+export interface ICategorie extends IAbstractEntity {
+  nom: string;
+  description: string;
+  memoires: IMemoire[];
+}
+export interface PartageMemoireDbContext extends IAbstractEntity {
+  Admins: IAdministrateur[];
+  Bibliothecaires: IBibliothecaire[];
+  Lecteurs: ILecteur[];
+  Encadreurs: IEncadreur[];
+  Filieres: IFiliere[];
+  Classes: IClasse[];
+  Categories: ICategorie[];
+  Memoires: IMemoire[];
+  Commentaires: ICommentaire[];
+  Likes: ILike[];
+  HistoriqueConsultations: IHistoriqueConsultation[];
+  TdErreurs: any[];
+}
+// HistoriqueConsultation export interface
+export interface IHistoriqueConsultation extends IAbstractEntity {
+  dateConsultation: Date;
+  memoire: IMemoire;
+  lecteur: ILecteur;
+}
+
+// Commentaire export interface
+export interface ICommentaire extends IAbstractEntity {
+  texte: string;
+  datePublication: Date;
+}
+
+// Likes export interface
+export interface ILike extends IAbstractEntity {
+  nombreLikes: number;
+  memoire:IMemoire;
+  lecteur:ILecteur;
+}
+
+// Abonnement export interface
+export interface IAbonnement extends IAbstractEntity { }
+
+export interface ITdErreur {
+  id: number;
+  dateErreur?: Date | null;
+  descriptionErreur: string;
+  titreErreur: string;
+}

@@ -26,7 +26,7 @@ export default function PageProfile() {
 
   return (
     <>
-      <div style={{ display: 'flex', height: '100vh',padding:"5px" }}>
+      <div style={{ display: 'flex', height: '100vh', padding: "5px" }}>
         {/* <div style={{ flex: 1, backgroundColor: '#BEC9CB', padding: '20px', color: '#fff' }}>
           <p>Nom</p>
           <p>Prenom</p>
@@ -36,7 +36,7 @@ export default function PageProfile() {
         <div style={{ flex: 4, padding: '20px' }}>
           <h2>Liste des memoires</h2>
           {/* <Input placeholder="Entrez le nom d'un memoire..." style={{ width: '100%', marginBottom: '20px' }} /> */}
-          <div style={{ display: "flex", flexDirection: "row", maxHeight: "70%", overflowX: "auto",overflowY:"hidden" }}>
+          <div style={{ display: "flex", flexDirection: "row", maxHeight: "70%", overflowX: "auto", overflowY: "hidden" }}>
             {currentMemoires.map((memoire, index) => (
               <Memoire key={index} {...memoire} />
             ))}
