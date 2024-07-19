@@ -2,29 +2,45 @@ export const getBreadCrumbLabel = (item : string) => {
     let label = "";
     switch (item) {
         case "layout":
-            label = "Mon espace"
+            label = "Mon espace";
             break;
         case "home":
-            label = "Accueil"
+            label = "Accueil";
             break;
         case "categories":
-            label = "Catégories"
+            label = "Catégories";
             break;
         case "memoires":
-            label = "Mémoires"
+            label = "Mémoires";
             break;
         case "settings":
-            label = "Paramètres"
+            label = "Paramètres";
             break;
         case "profil":
-            label = "Profil"
+            label = "Profil";
             break;
         case "libraries":
-            label = "Bibliothèque"
+            label = "Bibliothèque";
+            break;
+        case "admins":
+            label = "Admins";
+            break;
+        case "bibliothecaires":
+            label = "Bibliothécaires";
+            break;
+        case "classes":
+            label = "Classes";
+            break;
+        case "filieres":
+            label = "Filières";
+            break;
+        case "lecteurs":
+            label = "Lecteurs";
             break;
         default:
             break;
     }
+    
     return label === "" ? item : label;
 
 }

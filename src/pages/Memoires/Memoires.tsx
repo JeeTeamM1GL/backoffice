@@ -662,11 +662,11 @@ const data: IMemoire[] = [
 
 
 function Memoires() {
-  // const [categories , setMemoires] = useState([]);
+  // const [memoires , setMemoires] = useState([]);
   // const [loading , setLoading] = useState(false);
   // useEffect(() => {
   //     setLoading(true)
-  //     getActions(endpoints.categories.LIST)
+  //     getActions(endpoints.memoires.LIST)
   //     .then((response : any)=>{
   //         console.log(response)
   //         //setMemoires(response?.data)

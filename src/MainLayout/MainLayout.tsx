@@ -1,4 +1,4 @@
-import { AppleOutlined, BellOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { AppleOutlined, BellOutlined, BookOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { Affix, Avatar, Breadcrumb, Button, Dropdown, Layout, Menu, Select, Tooltip, Typography } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
@@ -71,6 +71,27 @@ function MainLayout() {
                     onClick: () => { navigate("/layout/home") },
                 },
                 {
+                    key: 'admins',
+                    icon: <UserOutlined />,
+                    label: "Admins",
+                    title: "Admins",
+                    onClick: () => { navigate("/layout/admins") }
+                },
+                {
+                    key: 'lecteurs',
+                    icon: <UserOutlined />,
+                    label: "Lecteurs",
+                    title: "Lecteurs",
+                    onClick: () => { navigate("/layout/lecteurs") }
+                },
+                {
+                    key: 'bibliothecaires',
+                    icon: <UserOutlined />,
+                    label: "Bibliothécaires",
+                    title: "Bibliothécaires",
+                    onClick: () => { navigate("/layout/bibliothecaires") }
+                },
+                {
                     key: 'categories',
                     icon: <AppleOutlined />,
                     label: "Catégories",
@@ -78,15 +99,29 @@ function MainLayout() {
                     onClick: () => { navigate("/layout/categories") }
                 },
                 {
+                    key: 'classes',
+                    icon: <HomeOutlined />,
+                    label: "Classes",
+                    title: "Classes",
+                    onClick: () => { navigate("/layout/classes") }
+                },
+                {
+                    key: 'filieres',
+                    icon: <HomeOutlined />,
+                    label: "Filières",
+                    title: "Filières",
+                    onClick: () => { navigate("/layout/filieres") }
+                },
+                {
                     key: 'memoires',
-                    icon: <FileOutlined />,
+                    icon: <BookOutlined />,
                     label: "Mémoires",
                     title: "Mémoires",
                     onClick: () => { navigate("/layout/memoires") }
                 },
                 {
                     key: 'libraries',
-                    icon: <FileOutlined />,
+                    icon: <BookOutlined />,
                     label: "Bibliothèque",
                     title: "Bibliothèque",
                     onClick: () => { navigate("/layout/libraries") }

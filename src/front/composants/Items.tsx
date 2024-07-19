@@ -106,22 +106,29 @@ export function Memoire({ body }: { body: IMemoire }) {
   return (
 
     <>
-      <div onClick={() => setVisible(true)} key={theBody.id ?? new Date().getTime()} 
-      style={{ paddingTop:"10px",borderRadius: "10px", backgroundColor: '#ff9600', maxHeight: '300px',height:"200px", textAlign: 'center', minWidth: "150px",width:"75%", margin: "10px", marginBottom: "20px", boxShadow: '5px 4px 2px -2px gray' }}>
-        {theBody.image && theBody.image !==""? (
-          
-          <img src={theBody.image ?? require('../../asset/logo.png')} alt="image" width={"100px"} height={"120px"} />
+      <div onClick={() => setVisible(true)} key={theBody.id ?? new Date().getTime()}
+        style={{ padding: "10px", borderRadius: "10px", backgroundColor: "#eb4d4b", maxHeight: '300px', height: "200px", textAlign: 'center', minWidth: "150px", width: "75%", margin: "10px", marginBottom: "20px", boxShadow: '5px 4px 2px -2px gray' }}>
+        {theBody.image && theBody.image !== "" ? (
+          <center>
+            <img src={theBody.image ?? require('../../asset/logo.png')} alt="image" width={"100px"} height={"120px"} />
+          </center>
+
         ) : (
           <center>
-            <div style={{ backgroundColor: '#0077ff', height: '130px', textAlign: 'center', minWidth: "120px", maxWidth: "70px", margin: "10px" }}>
-              <img src={require('../../asset/logo.png')} alt="image" width={"70px"} height={"70px"} />
+            <div style={{ backgroundColor: '#0077ff', minWidth: "120px", maxWidth: "70px", margin: "10px" }}>
+              <img src={require('../../asset/logo.png')} alt="image" width={"100px"} height={"100px"} />
             </div>
           </center>
         )}
 
         <div style={{ fontSize: "15px", margin: "10px" }}>
-          <p>{theBody.titre ?? "non-mentionné"}</p>
-          <p>{theBody.year ?? "non-mentionné"}</p>
+          <p>
+            <small style={{ marginTop: 0, display: 'block' }}>
+              {`${theBody.filiere?.intitule}-${theBody.classe?.nom}` ?? "non-mentionné"}
+            </small>
+            {theBody.titre ?? "non-mentionné"}<br/>
+          </p>
+
         </div>
       </div>
       <div>

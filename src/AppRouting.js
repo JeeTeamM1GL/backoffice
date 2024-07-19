@@ -8,6 +8,11 @@ import Home from "./pages/Home/Home.tsx";
 import NotFound from "./pages/NotFound/NotFound.tsx";
 import Categories from "./pages/Categories/Categories.tsx";
 import Memoires from "./pages/Memoires/Memoires.tsx";
+import Admins from "./pages/Admin/Admin.tsx";
+import Bibliothecaires from "./pages/Bibliothecaire/Bibliothecaire.tsx";
+import Classes from "./pages/Classe/Classe.tsx";
+import Filieres from "./pages/Filiere/Filiere.tsx";
+import Lecteurs from "./pages/Lecteur/Lecteur.tsx";
 
 export const routes = createBrowserRouter([
   {
@@ -61,6 +66,26 @@ export const routes = createBrowserRouter([
           {
             path: "libraries",
             element: <Bibliotheque />,
+          },
+          {
+            path: "admins",
+            element: <Admins />,
+          },
+          {
+            path: "bibliothecaires",
+            element: <Bibliothecaires />,
+          },
+          {
+            path: "classes",
+            element: <Classes />,
+          },
+          {
+            path: "filieres",
+            element: <Filieres />,
+          },
+          {
+            path: "lecteurs",
+            element: <Lecteurs />,
           },
           {
             path: "settings",
