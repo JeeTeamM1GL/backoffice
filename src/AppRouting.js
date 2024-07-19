@@ -2,12 +2,12 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import Autentification from "./pages/Autentification/Authentification.tsx";
 import MainLayout from "./MainLayout/MainLayout.tsx";
 import MemoireLecture from "./pages/MemoireLecture/MemoireLecture.tsx";
-import Memoire from "./pages/Memoire/Memoire.tsx";
 import Bibliotheque from "./pages/Bibliotheque/Bibliotheque.tsx";
 import Profil from "./pages/Profil/Profil.tsx";
 import Home from "./pages/Home/Home.tsx";
 import NotFound from "./pages/NotFound/NotFound.tsx";
 import Categories from "./pages/Categories/Categories.tsx";
+import Memoires from "./pages/Memoires/Memoires.tsx";
 
 export const routes = createBrowserRouter([
   {
@@ -50,7 +50,7 @@ export const routes = createBrowserRouter([
             children: [
               {
                 path: "",
-                element: <Memoire />,
+                element: <Memoires />,
               },
               {
                 path: "memoire-lecture",

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { getActions } from '../../actions/actions.ts';
+import { deleteActions, getActions } from '../../actions/actions.ts';
 import { endpoints } from '../../constants/endpoints.constants.ts';
 import axios from 'axios';
 import Card from 'antd/es/card/Card';
-import { Button, Flex, Input, Modal, Space, Table, TableProps} from 'antd';
+import { Button, Flex, Input, message, Modal, Popconfirm, Space, Table, TableProps } from 'antd';
 import Title from 'antd/es/typography/Title';
-import { SearchOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
 import AddCategory from '../../components/AddCategory.tsx';
 import { ICategorie } from '../../interfaces/interfaces.ts';
 import { formatDate } from '../../utils/helpers.ts';
@@ -16,12 +16,12 @@ const data: ICategorie[] = [
     {
         nom: "Securité",
         description: "parlons sécurité",
-        createdAt:new Date()
+        createdAt: new Date()
     },
     {
         nom: "Resau",
         description: "parlons résau",
-        createdAt:new Date()
+        createdAt: new Date()
     }
 ];
 
@@ -62,6 +62,16 @@ function Categories() {
         setCurrentRecord(record)
 
     };
+    const onDelete = (id: any) => {
+        deleteActions(endpoints.categories.DELETE + "" + id)
+            .then((res) => {
+                if (res?.data?.status === 200) {
+                    message.success('Categorie suprimer avec succes')
+                }
+            }
+        )
+
+    };
 
     const handleOk = () => {
         setIsModalOpen(false);
@@ -95,8 +105,20 @@ function Categories() {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <a onClick={() => { updateModal(record as any) }}>update </a>
-                    <a>Delete</a>
+                    <Button type="text" onClick={() => { updateModal(record as any) }} icon={<EditOutlined />} />
+
+
+
+                    <Popconfirm
+                        title="Delete the task"
+                        description="Are you sure to delete this task?"
+                        onConfirm={() => onDelete(record?.id)}
+                        // onCancel={}
+                        okText="Yes"
+                        cancelText="No"
+                    >
+                        <Button type="text" danger icon={<DeleteOutlined />} />
+                    </Popconfirm>
                 </Space>
             ),
         },

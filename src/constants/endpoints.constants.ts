@@ -1,26 +1,26 @@
 export const endpoints = {
     users : {
-        ADD : "/",
-        UPDATE : "",
-        DELETE : "" ,
-        LIST : "/users"
+        ADD : "/api/Users",
+        UPDATE : "/api/Users",
+        DELETE : "/api/Users" ,
+        LIST : "/api/Users"
     },
     categories : {
-        ADD : "/",
-        UPDATE : "",
-        DELETE : "" ,
+        ADD : "/api/Category",
+        UPDATE : "/api/Category",
+        DELETE : "/api/Category" ,
         LIST : "/api/Category"
     },
     memoires : {
-        ADD : "/",
+        ADD : "",
         UPDATE : "",
         DELETE : "" ,
-        LIST : "/api/memoire"
+        LIST : "/api/memoires"
     },
     bibliotheque:{
-        ADD : "/",
+        ADD : "",
         UPDATE : "",
         DELETE : "" ,
-        LIST : "/api/bibliotheque"
+        LIST : "/api/bibliotheques"
     }
 }
