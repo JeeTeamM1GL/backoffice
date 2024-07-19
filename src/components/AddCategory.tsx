@@ -1,16 +1,53 @@
 import React, { useState } from 'react'
 import { ICategorie } from '../interfaces/interfaces'
-import { FormProps, Form, Input, Button, Flex } from 'antd';
+import { FormProps, Form, Input, Button, Flex, message } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { postActions, putActions } from '../actions/actions.ts';
+import { endpoints } from '../constants/endpoints.constants.ts';
 
 
 
-function AddCategory({ operation, isModalOpen,setIsModalOpen, currentRecord }:any) {
+function AddCategory({ operation, isModalOpen, setIsModalOpen, currentRecord }: any) {
 
-    const [categorie, setCategorie] = useState<ICategorie>()
+    const [loading, setLoading] = useState<boolean>(false);
+    const save: FormProps<ICategorie>['onFinish'] = (values) => {
+        //console.log('Success:', values);
+        switch (operation) {
+            case "add":
+                setLoading(true)
+                postActions(endpoints.categories.ADD, values)
+                    .then((res) => {
+                        if (res?.data?.status === 200) {
+                            message.success('Category ajouté avec succes')
+                            setIsModalOpen(false)
 
-    const handleAddCategory: FormProps<ICategorie>['onFinish'] = (values) => {
-        console.log('Success:', values);
+                        }
+                    })
+                    .finally(
+                        () => setLoading(false)
+                    )
+
+                break;
+            case "update":
+                setLoading(true)
+                putActions(endpoints.categories.UPDATE + "" + currentRecord.id, values)
+                    .then((res) => {
+                        if (res?.data?.status === 200) {
+                            message.success('Category modifier avec succes')
+                            setIsModalOpen(false)
+
+                        }
+                    })
+                    .finally(
+                        () => setLoading(false)
+                    )
+
+                break;
+            default:
+                break;
+        }
+
+
     };
 
     const onFinishFailed: FormProps<ICategorie>['onFinishFailed'] = (errorInfo) => {
@@ -25,7 +62,7 @@ function AddCategory({ operation, isModalOpen,setIsModalOpen, currentRecord }:an
             // wrapperCol={{ span: 16 }}
             style={{ width: "100%" }}
             initialValues={currentRecord}
-            onFinish={handleAddCategory}
+            onFinish={save}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
@@ -41,11 +78,11 @@ function AddCategory({ operation, isModalOpen,setIsModalOpen, currentRecord }:an
                 label="Description"
                 name="description"
             >
-                <TextArea rows={5}/>
+                <TextArea rows={5} />
             </Form.Item>
 
             <Flex justify="center" flex={1} align="center">
-                <Button type="primary" onClick={()=>setIsModalOpen(false)} ghost>
+                <Button type="primary" onClick={() => setIsModalOpen(false)} ghost>
                     Annuler
                 </Button>
                 &nbsp;&nbsp;&nbsp;

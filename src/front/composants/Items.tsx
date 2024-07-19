@@ -1,7 +1,7 @@
-import { Button, Input, Select, Table, Modal } from 'antd';
+import { Button, Input, Select, Table, Modal, Card, List } from 'antd';
 import React, { useState } from 'react';
 import Alignement from './Alignement.tsx';
-import logo from '../../asset/logo.png'
+//import require('../../asset/logo.png') from '../../asset/require('../../asset/logo.png').png'
 import { useNavigate } from 'react-router-dom';
 import { IMemoire } from '../../interfaces/interfaces.ts';
 const { Option } = Select;
@@ -104,15 +104,17 @@ export function Memoire({ body }: { body: IMemoire }) {
   const n = useNavigate();
 
   return (
+
     <>
-      <div onClick={() => setVisible(true)} key={theBody.id ?? new Date().getTime()} style={{ borderRadius: "10px", backgroundColor: '#ff9600', maxHeight: '300px', textAlign: 'center', minWidth: "150px", maxWidth: "160px", margin: "10px", marginBottom: "20px", boxShadow: '5px 4px 2px -2px gray' }}>
-        {theBody.image ? (
+      <div onClick={() => setVisible(true)} key={theBody.id ?? new Date().getTime()} 
+      style={{ paddingTop:"10px",borderRadius: "10px", backgroundColor: '#ff9600', maxHeight: '300px',height:"200px", textAlign: 'center', minWidth: "150px",width:"75%", margin: "10px", marginBottom: "20px", boxShadow: '5px 4px 2px -2px gray' }}>
+        {theBody.image && theBody.image !==""? (
           
-          <img src={theBody.image ?? logo} alt="image" width={"100px"} height={"120px"} />
+          <img src={theBody.image ?? require('../../asset/logo.png')} alt="image" width={"100px"} height={"120px"} />
         ) : (
           <center>
             <div style={{ backgroundColor: '#0077ff', height: '130px', textAlign: 'center', minWidth: "120px", maxWidth: "70px", margin: "10px" }}>
-              <img src={logo} alt="image" width={"70px"} height={"70px"} />
+              <img src={require('../../asset/logo.png')} alt="image" width={"70px"} height={"70px"} />
             </div>
           </center>
         )}
