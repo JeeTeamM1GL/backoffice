@@ -339,7 +339,7 @@ function MainLayout() {
                         minHeight: "100vh"
                     }}>
 
-                    <Breadcrumb items={breadCrumbItems as any} />
+                    <Breadcrumb separator=">" items={breadCrumbItems as any} />
                     <Content
                         className="site-layout-background"
                         //className="content"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Input, Button, Pagination, Col, Row, Select, Card, Upload } from 'antd';
-import { IMemoire } from '../../interfaces/interfaces';
+import { IMemoire } from '../../interfaces/interfaces.ts';
 import TextArea from 'antd/es/input/TextArea';
 import { Memoire } from '../../front/composants/Items.tsx';
 

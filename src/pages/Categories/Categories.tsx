@@ -19,10 +19,10 @@ const data: ICategorie[] = [
         createdAt:new Date()
     },
     {
-        nom: "Resau",
-        description: "parlons résau",
+        nom: "Réseau",
+        description: "parlons réseau",
         createdAt:new Date()
-    }
+    },
 ];
 
 
