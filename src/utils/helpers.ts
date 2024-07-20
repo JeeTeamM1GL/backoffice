@@ -46,5 +46,5 @@ export const getBreadCrumbLabel = (item : string) => {
 }
 
 export const formatDate = (record:any) => {
-    return (record === null || record === "") ? "" : new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(record));
+    return (record === null || record === "" || record === undefined || record === "0001-01-01T00:00:00") ? "" : new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(record));
 }

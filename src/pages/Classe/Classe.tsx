@@ -5,32 +5,23 @@ import axios from 'axios';
 import Card from 'antd/es/card/Card';
 import { Button, Flex, Input, message, Modal, Popconfirm, Space, Table, TableProps } from 'antd';
 import Title from 'antd/es/typography/Title';
-import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import AddClasse from '../../components/AddClasse.tsx';
 import { IClasse } from '../../interfaces/interfaces.ts';
 import { formatDate } from '../../utils/helpers.ts';
 
 function Classes() {
-        // const [classes , setClasses] = useState([]);
-    // const [loading , setLoading] = useState(false);
-    // useEffect(() => {
-    //     setLoading(true)
-    //     getActions(endpoints.classes.LIST)
-    //     .then((response : any)=>{
-    //         console.log(response)
-    //         //setClasses(response?.data)
-    //     })
-    //     .finally(()=>{
-    //         setLoading(false)
-    //     })
-
-    //   return () => {
-
-    //   }
-    // }, [])
+    const [classes , setClasses] = useState([]);
+    const [loading , setLoading] = useState(false);
+    
     const [operation, setOperation] = useState<string>("");
     const [currentRecord, setCurrentRecord] = useState<IClasse | any>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [refetch,setRefetch] = useState<number>(0);
+
+    const onRefresh  = () => {
+        setRefetch(Date.now())
+    }
 
     const addModal = () => {
         setIsModalOpen(true);
@@ -72,7 +63,7 @@ function Classes() {
             title: 'Date de creation',
             dataIndex: 'createdAt',
             key: 'createdAt',
-            render: (record) => <a>{formatDate(record.toISOString())}</a>,
+            render: (record) => <a>{formatDate(record)}</a>,
         },
         {
             title: 'Action',
@@ -81,11 +72,12 @@ function Classes() {
                 <Space size="middle">
                     <Button type="text" onClick={() => { updateModal(record as any) }} icon={<EditOutlined />} />
                     <Popconfirm
-                        title="Delete the task"
-                        description="Are you sure to delete this task?"
+                        title="Supprimer l'élement"
+                        description="Etes-vous sur de continuer?"
                         onConfirm={() => onDelete(record?.id)}
-                        okText="Yes"
-                        cancelText="No"
+                        // onCancel={}
+                        okText="Oui"
+                        cancelText="Non"
                     >
                         <Button type="text" danger icon={<DeleteOutlined />} />
                     </Popconfirm>
@@ -94,17 +86,36 @@ function Classes() {
         },
     ];
 
+    useEffect(() => {
+        setLoading(true)
+        getActions(endpoints.classe.LIST)
+        .then((response : any)=>{
+            //console.log(response)
+            setClasses(response?.data)
+        })
+        .finally(()=>{
+            setLoading(false)
+        })
+
+      return () => {
+
+      }
+    }, [refetch])
+
     return (
         <Card>
             <Title level={4}>Classes</Title>
             <Flex justify="space-between" flex={1} align="center">
                 <Input prefix={<SearchOutlined />} placeholder="Rechercher" style={{ width: "300px" }} />
-                <Button type="primary" onClick={addModal}>Nouveau</Button>
+                <Space>
+                    <Button type="primary" onClick={onRefresh} icon={<ReloadOutlined/>} ghost />
+                    <Button type="primary" onClick={addModal}>Nouveau</Button>
+                </Space>
             </Flex>
             <br />
-            <Table columns={columns} dataSource={[]} />
+            <Table loading={loading} columns={columns} dataSource={classes} rowKey={(record)=>record?.id} />
             <Modal footer={null} title={<Title level={4}>{operation === "add" ? "Nouvelle classe" : "Modifier classe"}</Title>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} destroyOnClose>
-                <AddClasse operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} />
+                <AddClasse operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} onRefresh={onRefresh} />
             </Modal>
         </Card>
     );

@@ -4,12 +4,14 @@ import { message } from "antd";
 
 export const getActions = async (endpoint : string) => {
     try {
-        const response = await axios.get(`${API_URL}${endpoint}` , {
-            headers : {
-                // "Content-Type" : "application/json",
-                // Authorization : `Bearer ${JSON.parse(String(sessionStorage.getItem("userConnected")))}`
-            }
-        });
+        const response = await axios.get(`${API_URL}${endpoint}` 
+        //     , {
+        //     headers : {
+        //         // "Content-Type" : "application/json",
+        //         // Authorization : `Bearer ${JSON.parse(String(sessionStorage.getItem("userConnected")))}`
+        //     }
+        // }
+    );
         return response; 
     } catch (error) {
         message.error(error.message);
@@ -44,6 +46,7 @@ export const putActions = async (endpoint : string , payload : any) => {
         console.log(error);
     }
 }
+
 
 export const deleteActions = async (endpoint : string) => {
     try {

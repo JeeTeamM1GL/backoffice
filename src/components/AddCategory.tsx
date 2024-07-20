@@ -7,45 +7,55 @@ import { endpoints } from '../constants/endpoints.constants.ts';
 
 
 
-function AddCategory({ operation, isModalOpen, setIsModalOpen, currentRecord }: any) {
-
+function AddCategory({ operation, isModalOpen, setIsModalOpen, currentRecord , onRefresh }: any) {
+    const [form] = Form.useForm();
     const [loading, setLoading] = useState<boolean>(false);
     const save: FormProps<ICategorie>['onFinish'] = (values) => {
         //console.log('Success:', values);
-        switch (operation) {
-            case "add":
-                setLoading(true)
-                postActions(endpoints.categories.ADD, values)
-                    .then((res) => {
-                        if (res?.data?.status === 200) {
-                            message.success('Category ajouté avec succes')
-                            setIsModalOpen(false)
-
-                        }
-                    })
-                    .finally(
-                        () => setLoading(false)
-                    )
-
-                break;
-            case "update":
-                setLoading(true)
-                putActions(endpoints.categories.UPDATE + "" + currentRecord.id, values)
-                    .then((res) => {
-                        if (res?.data?.status === 200) {
-                            message.success('Category modifier avec succes')
-                            setIsModalOpen(false)
-
-                        }
-                    })
-                    .finally(
-                        () => setLoading(false)
-                    )
-
-                break;
-            default:
-                break;
-        }
+        form.validateFields()
+        .then(()=>{
+            switch (operation) {
+                case "add":
+                    setLoading(true)
+                    postActions(endpoints.categories.ADD, values)
+                        .then((res) => {
+                            if (res?.status === 200) {
+                                message.success('Opération éffectuée avec succès')
+                                setIsModalOpen(false)
+                                onRefresh();
+                            }
+                        })
+                        .finally(
+                            () => setLoading(false)
+                        )
+    
+                    break;
+                case "update":
+                    setLoading(true)
+                    //putActions(endpoints.categories.UPDATE + "/" + currentRecord.id, values)
+                    values.id = currentRecord?.id;
+                    putActions(endpoints.categories.UPDATE, values)
+                        .then((res) => {
+                            if (res?.status === 200) {
+                                message.success('Opération éffectuée avec succès')
+                                setIsModalOpen(false);
+                                onRefresh();
+    
+                            }
+                        })
+                        .finally(
+                            () => setLoading(false)
+                        )
+    
+                    break;
+                default:
+                    break;
+            }
+        })
+        .catch((err:any)=>{
+            console.log(err)
+        })
+        
 
 
     };
@@ -58,6 +68,7 @@ function AddCategory({ operation, isModalOpen, setIsModalOpen, currentRecord }: 
         <Form
             layout="vertical"
             name="basic"
+            form={form}
             // labelCol={{ span: 8 }}
             // wrapperCol={{ span: 16 }}
             style={{ width: "100%" }}
@@ -86,7 +97,7 @@ function AddCategory({ operation, isModalOpen, setIsModalOpen, currentRecord }: 
                     Annuler
                 </Button>
                 &nbsp;&nbsp;&nbsp;
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" loading={loading} htmlType="submit">
                     Enregistrer
                 </Button>
             </Flex>

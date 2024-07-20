@@ -36,10 +36,10 @@ export const endpoints = {
         LIST: "/api/bibliothecaires"
     },
     classe:{
-        ADD: "/api/classes",
-        UPDATE: "/api/classes",
-        DELETE: "/api/classes",
-        LIST: "/api/classes"
+        ADD: "/api/Classe",
+        UPDATE: "/api/Classe",
+        DELETE: "/api/Classe",
+        LIST: "/api/Classe"
     },
     filiere:{
         ADD: "/api/fillieres",
