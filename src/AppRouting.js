@@ -3,7 +3,7 @@ import Autentification from "./pages/Autentification/Authentification.tsx";
 import MainLayout from "./MainLayout/MainLayout.tsx";
 import MemoireLecture from "./pages/MemoireLecture/MemoireLecture.tsx";
 import Bibliotheque from "./pages/Bibliotheque/Bibliotheque.tsx";
-import Profil from "./pages/Profil/Profil.tsx";
+import Profil from "./pages/profil/Profil.tsx";
 import Home from "./pages/Home/Home.tsx";
 import NotFound from "./pages/NotFound/NotFound.tsx";
 import Categories from "./pages/Categories/Categories.tsx";
