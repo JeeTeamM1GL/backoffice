@@ -17,17 +17,17 @@ export const endpoints = {
         DELETE: "/api/memoires",
         LIST: "/api/memoires"
     },
-    bibliotheque: {
-        ADD: "/api/bibliotheques",
-        UPDATE: "/api/bibliotheques",
-        DELETE: "/api/bibliotheques",
-        LIST: "/api/bibliotheques",
+    bibliothecaires: {
+        ADD: "/api/Bibliothecaire",
+        UPDATE: "/api/Bibliothecaire",
+        DELETE: "/api/Bibliothecaire",
+        LIST: "/api/Bibliothecaire",
     },
     admin:{
-        ADD: "/api/admins",
-        UPDATE: "/api/admins",
-        DELETE: "/api/admins",
-        LIST: "/api/admins",
+        ADD: "/api/Admin",
+        UPDATE: "/api/Admin",
+        DELETE: "/api/Admin",
+        LIST: "/api/Admin",
     },
     bibliothecaire:{
         ADD:"/api/bibliothecaires",

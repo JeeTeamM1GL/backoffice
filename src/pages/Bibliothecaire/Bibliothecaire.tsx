@@ -5,29 +5,34 @@ import axios from 'axios';
 import Card from 'antd/es/card/Card';
 import { Button, Flex, Input, message, Modal, Popconfirm, Space, Table, TableProps } from 'antd';
 import Title from 'antd/es/typography/Title';
-import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import AddBibliothecaire from '../../components/AddBibliothecaire.tsx';
 import { IBibliothecaire } from '../../interfaces/interfaces.ts';
 import { formatDate } from '../../utils/helpers.ts';
 
 function Bibliothecaires() {
-        // const [bibliothecaires , setBibliothecaires] = useState([]);
-    // const [loading , setLoading] = useState(false);
-    // useEffect(() => {
-    //     setLoading(true)
-    //     getActions(endpoints.bibliothecaires.LIST)
-    //     .then((response : any)=>{
-    //         console.log(response)
-    //         //setBibliothecaires(response?.data)
-    //     })
-    //     .finally(()=>{
-    //         setLoading(false)
-    //     })
+    const [bibliothecaires , setBibliothecaires] = useState([]);
+    const [loading , setLoading] = useState(false);
+    const [refetch, setRefetch] = useState<number>(0);
 
-    //   return () => {
+    const onRefresh = () => {
+        setRefetch(Date.now())
+    }
+    useEffect(() => {
+        setLoading(true)
+        getActions(endpoints.bibliothecaires.LIST)
+        .then((response : any)=>{
+            //console.log(response)
+            setBibliothecaires(response?.data)
+        })
+        .finally(()=>{
+            setLoading(false)
+        })
 
-    //   }
-    // }, [])
+      return () => {
+
+      }
+    }, [refetch])
     const [operation, setOperation] = useState<string>("");
     const [currentRecord, setCurrentRecord] = useState<IBibliothecaire | any>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -45,12 +50,14 @@ function Bibliothecaires() {
     };
 
     const onDelete = (id: any) => {
-        deleteActions(endpoints.bibliotheque.DELETE + "" + id)
+        deleteActions(endpoints.admin.DELETE + "/" + id)
             .then((res) => {
-                if (res?.data?.status === 200) {
-                    message.success('Bibliothécaire supprimé avec succès');
+                if (res?.status === 200) {
+                    message.success('Elément retiré avec succès')
+                    onRefresh();
                 }
-            });
+            }
+            )
     };
 
     const handleOk = () => {
@@ -85,8 +92,8 @@ function Bibliothecaires() {
                 <Space size="middle">
                     <Button type="text" onClick={() => { updateModal(record as any) }} icon={<EditOutlined />} />
                     <Popconfirm
-                        title="Delete the task"
-                        description="Are you sure to delete this task?"
+                        title="Supprimer l'élement"
+                        description="Etes-vous sur de continuer?"
                         onConfirm={() => onDelete(record?.id)}
                         okText="Yes"
                         cancelText="No"
@@ -103,12 +110,15 @@ function Bibliothecaires() {
             <Title level={4}>Bibliothécaires</Title>
             <Flex justify="space-between" flex={1} align="center">
                 <Input prefix={<SearchOutlined />} placeholder="Rechercher" style={{ width: "300px" }} />
-                <Button type="primary" onClick={addModal}>Nouveau</Button>
+                <Space>
+                    <Button type="primary" onClick={onRefresh} icon={<ReloadOutlined />} ghost />
+                    <Button type="primary" onClick={addModal}>Nouveau</Button>
+                </Space>
             </Flex>
             <br />
             <Table columns={columns} dataSource={[]} />
             <Modal footer={null} title={<Title level={4}>{operation === "add" ? "Nouveau bibliothécaire" : "Modifier bibliothécaire"}</Title>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} destroyOnClose>
-                <AddBibliothecaire operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} />
+                <AddBibliothecaire operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} onRefresh={onRefresh} />
             </Modal>
         </Card>
     );

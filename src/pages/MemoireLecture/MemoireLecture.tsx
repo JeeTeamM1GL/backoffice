@@ -1,10 +1,11 @@
-import { useCallback, useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import { Document, Page } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import { pdfjs } from 'react-pdf';
-import book from "./book.pdf";
 import { Button } from 'antd';
+
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -18,7 +19,7 @@ const options = {
 const maxWidth = 300;
 
 export default function MemoireLecture() {
-  const [numPages, setNumPages] = useState<number>();
+  const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);
   const [containerWidth, setContainerWidth] = useState<number>();
@@ -49,7 +50,7 @@ export default function MemoireLecture() {
     <div>
         <Button onClick={doTheWorkBack}>previous page</Button>
         <Button onClick={doTheWork}>next page</Button>
-        <Document file={book} options={options} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document file={require('./book.pdf')} options={options} onLoadSuccess={onDocumentLoadSuccess}>
             <Page pageNumber={pageNumber} 
                     width={containerWidth ? Math.min(containerWidth, maxWidth) : maxWidth}/>
             {/* {Array.from(new Array(numPages), (el, index) => (

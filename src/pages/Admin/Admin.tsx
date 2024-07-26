@@ -5,29 +5,35 @@ import axios from 'axios';
 import Card from 'antd/es/card/Card';
 import { Button, Flex, Input, message, Modal, Popconfirm, Space, Table, TableProps } from 'antd';
 import Title from 'antd/es/typography/Title';
-import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import AddAdmin from '../../components/AddAdmin.tsx';
 import { IAdmin } from '../../interfaces/interfaces.ts';
 import { formatDate } from '../../utils/helpers.ts';
 
 function Admins() {
-        // const [admins , setAdmins] = useState([]);
-    // const [loading , setLoading] = useState(false);
-    // useEffect(() => {
-    //     setLoading(true)
-    //     getActions(endpoints.categories.LIST)
-    //     .then((response : any)=>{
-    //         console.log(response)
-    //         //setAdmins(response?.data)
-    //     })
-    //     .finally(()=>{
-    //         setLoading(false)
-    //     })
+    const [dataSource, setDataSource] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [refetch, setRefetch] = useState<number>(0);
 
-    //   return () => {
+    const onRefresh = () => {
+        setRefetch(Date.now())
+    }
+    useEffect(() => {
+        setLoading(true)
+        getActions(endpoints.admin.LIST)
+            .then((response: any) => {
+                //console.log(response)
+                setDataSource(response?.data)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
 
-    //   }
-    // }, [])
+        return () => {
+
+        }
+    }, [refetch])
+
     const [operation, setOperation] = useState<string>("");
     const [currentRecord, setCurrentRecord] = useState<IAdmin | any>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -45,12 +51,15 @@ function Admins() {
     };
 
     const onDelete = (id: any) => {
-        deleteActions(endpoints.users.DELETE + "" + id)
+        
+        deleteActions(endpoints.admin.DELETE + "/" + id)
             .then((res) => {
-                if (res?.data?.status === 200) {
-                    message.success('Admin supprimé avec succès');
+                if (res?.status === 200) {
+                    message.success('Elément retiré avec succès')
+                    onRefresh();
                 }
-            });
+            }
+            )
     };
 
     const handleOk = () => {
@@ -85,8 +94,8 @@ function Admins() {
                 <Space size="middle">
                     <Button type="text" onClick={() => { updateModal(record as any) }} icon={<EditOutlined />} />
                     <Popconfirm
-                        title="Delete the task"
-                        description="Are you sure to delete this task?"
+                        title="Supprimer l'élement"
+                        description="Etes-vous sur de continuer?"
                         onConfirm={() => onDelete(record?.id)}
                         okText="Yes"
                         cancelText="No"
@@ -100,15 +109,18 @@ function Admins() {
 
     return (
         <Card>
-            <Title level={4}>Admins</Title>
+            <Title level={4}>Administrateurs</Title>
             <Flex justify="space-between" flex={1} align="center">
                 <Input prefix={<SearchOutlined />} placeholder="Rechercher" style={{ width: "300px" }} />
-                <Button type="primary" onClick={addModal}>Nouveau</Button>
+                <Space>
+                    <Button type="primary" onClick={onRefresh} icon={<ReloadOutlined />} ghost />
+                    <Button type="primary" onClick={addModal}>Nouveau</Button>
+                </Space>
             </Flex>
             <br />
-            <Table columns={columns} dataSource={[]} />
+            <Table columns={columns} loading={loading} dataSource={dataSource || []} />
             <Modal footer={null} title={<Title level={4}>{operation === "add" ? "Nouvel admin" : "Modifier admin"}</Title>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} destroyOnClose>
-                <AddAdmin operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} />
+                <AddAdmin operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} onRefresh={onRefresh} />
             </Modal>
         </Card>
     );

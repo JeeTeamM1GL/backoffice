@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'antd';
-import logo from "../../asset/logo.png";
 import { useNavigate } from 'react-router-dom';
 
 function Autentification() {
@@ -25,7 +24,7 @@ function Autentification() {
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
             <div style={{ flex: 1, backgroundColor: '#BEC9CB' }}>
-                <center><img src={logo} alt="logo" /></center>
+                <center><img src={require('./../../asset/logo.png')} alt="logo" /></center>
                 <br />
                 <center><b><h1 style={{ fontSize: "50px", fontFamily: "monospace" }}>***ISI Memory***</h1></b></center>
             </div>

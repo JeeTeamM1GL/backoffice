@@ -33,8 +33,8 @@ function AddCategory({ operation, isModalOpen, setIsModalOpen, currentRecord , o
                 case "update":
                     setLoading(true)
                     //putActions(endpoints.categories.UPDATE + "/" + currentRecord.id, values)
-                    values.id = currentRecord?.id;
-                    putActions(endpoints.categories.UPDATE, values)
+                    //values.id = currentRecord?.id;
+                    putActions(`${endpoints.categories.UPDATE}/${currentRecord?.id}` , values)
                         .then((res) => {
                             if (res?.status === 200) {
                                 message.success('Opération éffectuée avec succès')

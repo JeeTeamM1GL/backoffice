@@ -1,37 +1,65 @@
 import React, { useState } from 'react';
 import { IAdmin } from '../interfaces/interfaces';
-import { FormProps, Form, Input, Button, message } from 'antd';
+import { FormProps, Form, Input, Button, message, Flex } from 'antd';
 import { postActions, putActions } from '../actions/actions.ts';
 import { endpoints } from '../constants/endpoints.constants.ts';
 
-function AddAdmin({ operation, isModalOpen, setIsModalOpen, currentRecord }: any) {
+function AddAdmin({ operation, isModalOpen, setIsModalOpen, currentRecord, onRefresh }: any) {
     const [loading, setLoading] = useState<boolean>(false);
-
+    const [form] = Form.useForm();
     const save: FormProps<IAdmin>['onFinish'] = (values) => {
-        setLoading(true);
-        const endpoint = operation === 'add' ? endpoints.users.ADD : `${endpoints.users.UPDATE}/${currentRecord.id}`;
-        const action = operation === 'add' ? postActions : putActions;
-
-        action(endpoint, values).then((res) => {
-            if (res?.data?.status === 200) {
-                message.success(`Admin ${operation === 'add' ? 'ajouté' : 'modifié'} avec succès`);
-                setIsModalOpen(false);
+        form.validateFields()
+        .then(()=>{
+            switch (operation) {
+                case "add":
+                    setLoading(true)
+                    values.password = "passer";
+                    postActions(endpoints.admin.ADD, values)
+                        .then((res) => {
+                            if (res?.status === 200) {
+                                message.success('Opération éffectuée avec succès')
+                                setIsModalOpen(false)
+                                onRefresh();
+                            }
+                        })
+                        .finally(
+                            () => setLoading(false)
+                        )
+    
+                    break;
+                case "update":
+                    setLoading(true)
+                    putActions(`${endpoints.admin.UPDATE}/${currentRecord?.id}` , values)
+                        .then((res) => {
+                            if (res?.status === 200) {
+                                message.success('Opération éffectuée avec succès')
+                                setIsModalOpen(false);
+                                onRefresh();
+    
+                            }
+                        })
+                        .finally(
+                            () => setLoading(false)
+                        )
+    
+                    break;
+                default:
+                    break;
             }
-        }).finally(() => setLoading(false));
-    };
-
-    const onFinishFailed: FormProps<IAdmin>['onFinishFailed'] = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+        })
+        .catch((err:any)=>{
+            console.log(err)
+        })
     };
 
     return (
         <Form
             layout="vertical"
             name="adminForm"
+            form={form}
             style={{ width: '100%' }}
             initialValues={currentRecord}
             onFinish={save}
-            onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
             <Form.Item<IAdmin>
@@ -55,22 +83,23 @@ function AddAdmin({ operation, isModalOpen, setIsModalOpen, currentRecord }: any
             >
                 <Input />
             </Form.Item>
-            <Form.Item<IAdmin>
+            {/* <Form.Item<IAdmin>
                 label="Mot de passe"
                 name="password"
                 rules={[{ required: true, message: 'Champ obligatoire!' }]}
             >
                 <Input.Password />
-            </Form.Item>
-            <Form.Item>
+            </Form.Item> */}
+
+            <Flex justify="center" flex={1} align="center">
                 <Button type="primary" onClick={() => setIsModalOpen(false)} ghost>
                     Annuler
                 </Button>
                 &nbsp;&nbsp;&nbsp;
-                <Button type="primary" htmlType="submit" loading={loading}>
+                <Button type="primary" loading={loading} htmlType="submit">
                     Enregistrer
                 </Button>
-            </Form.Item>
+            </Flex>
         </Form>
     );
 }
