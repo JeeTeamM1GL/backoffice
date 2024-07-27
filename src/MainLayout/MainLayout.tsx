@@ -1,5 +1,5 @@
 import { AppleOutlined, BellOutlined, BookOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
-import { Affix, Avatar, Breadcrumb, Button, Dropdown, Layout, Menu, Select, Tooltip, Typography } from 'antd';
+import { Affix, Avatar, Breadcrumb, Button, Dropdown, Input, Layout, Menu, Select, Space, Tooltip, Typography } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
 import React, { useEffect, useState } from 'react'
@@ -237,7 +237,7 @@ function MainLayout() {
                     marginLeft: screenWidth > 992 ? (collapsed ? "6%" : "20%") : 0
                 }} >
 
-                    <div style={{ display: "flex", justifyContent: "start", alignItems: "center" }} >
+                    <Space align='center' size='large' >
                         {
                             React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                                 className: 'trigger default-layout-ham',
@@ -254,8 +254,8 @@ function MainLayout() {
                             onClick: () => setOpen(true),
                         })
                     } */}
-                        {/* <Input prefix={<SearchOutlined />} width={600} placeholder='Entrer votre recherche' /> */}
-                    </div>
+                        <Input size="large" prefix={<SearchOutlined />} style={{borderRadius : 24, width : "30vw" }} placeholder='Entrer votre recherche' />
+                    </Space>
                     <div className='header-right' >
 
                         {/* {
