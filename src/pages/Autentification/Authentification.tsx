@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Autentification() {
     const [connection, setConnection] = useState({ login: "", password: "" });
@@ -31,81 +31,114 @@ function Autentification() {
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
                 {view === "connction" ? (
                     <>
-                        <h1 style={{ marginBottom: '50px', fontStyle: "italic", fontSize: "60px" }}>Connection:</h1>
-                        <div style={{ width: '80%', marginBottom: '20px' }}>
+                        <h1 style={{ 
+                            marginBottom: '50px', 
+                            //fontStyle: "italic", 
+                            fontSize: "60px" }}>Connexion</h1>
+                        <div style={{ width: '50%', marginBottom: '20px' }}>
                             <Input
-                                placeholder="entrez votre login..."
+                                placeholder=" Entrer votre login"
                                 value={connection.login}
+                                size='large'
                                 onChange={(e)=>setConnection({...connection,login:e.target.value})}
-                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                //style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
-                        <div style={{ width: '80%', marginBottom: '20px' }}>
+                        <br />
+                        <div style={{ width: '50%', marginBottom: '20px' }}>
                             <Input
-                                placeholder="entrez votre mot de passe..."
+                                placeholder=" Entrer votre mot de passe"
                                 type="password"
                                 value={connection.password}
+                                size='large'
                                 onChange={(e)=>setConnection({...connection,password:e.target.value})}
-                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                //style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
+                        <br />
                         <Button
                             type="primary"
+                            size='large'
                             onClick={handleConncetionButtonClick}
-                            style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', minWidth: '30%', minHeight: '50px', padding: '10px' }}
+                            style={{ 
+                                // backgroundColor: '#BEC9CB', 
+                                // borderRadius: '20px', 
+                                // minWidth: '30%', 
+                                // minHeight: '50px', 
+                                // padding: '10px' 
+                                width : "50%"
+                            }}
                         >
-                            connection
+                            Se connecter
                         </Button>
-                        <p style={{ marginTop: '50px', fontStyle: 'italic', fontSize: "15px" }}>
-                            je ne suis pas d'isi , je souhaite <a onClick={() => newCompteOrConnection("newCompte")} style={{ color: '#BEC9CB', cursor: 'pointer' }}>creer un compte</a>
+                        <p style={{ marginTop: '50px', 
+                            //fontStyle: 'italic', 
+                            fontSize: "15px" }}>
+                            Je ne suis pas d'isi , je souhaite <Button type='link' onClick={() => newCompteOrConnection("newCompte")}>créer un compte</Button>
                         </p>
                     </>
                 ) : (
                     <>
-                        <h1 style={{ marginBottom: '50px', fontStyle: "italic", fontSize: "60px" }}>Créer un Compte:</h1>
+                        <h1 style={{ marginBottom: '50px', 
+                            //fontStyle: "italic", 
+                            fontSize: "60px" }}>Créer un Compte:</h1>
                         <div style={{ width: '80%', marginBottom: '20px' }}>
                             <Input
-                                placeholder="entrez votre nom..."
+                                placeholder="Entrer votre nom..."
+                                size='large'
                                 value={nouveauCompte.nom}
                                 onChange={(e)=>setNouveauCompte({...nouveauCompte,nom:e.target.value})}
-                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                style={{ 
+                                    //backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' 
+                                }}
                             />
                         </div>
+                        <br />
                         <div style={{ width: '80%', marginBottom: '20px' }}>
                             <Input
-                                placeholder="entrez votre prenom..."
+                                placeholder="Entrez votre prenom..."
                                 type="text"
                                 value={nouveauCompte.prenon}
                                 onChange={(e)=>setNouveauCompte({...nouveauCompte,prenon:e.target.value})}
-                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                size='large'
+                                //style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
+                        <br />
                         <div style={{ width: '80%', marginBottom: '20px' }}>
                             <Input
-                                placeholder="entrez votre login..."
+                                placeholder="Entrez votre login..."
                                 value={nouveauCompte.login}
+                                size='large'
                                 onChange={(e)=>setNouveauCompte({...nouveauCompte,login:e.target.value})}
-                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                //style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
+                        <br />
                         <div style={{ width: '80%', marginBottom: '20px' }}>
                             <Input
-                                placeholder="entrez votre mot de passe..."
+                                placeholder="Entrez votre mot de passe..."
                                 type="password"
+                                size='large'
                                 value={nouveauCompte.password}
                                 onChange={(e)=>setNouveauCompte({...nouveauCompte,password:e.target.value})}
-                                style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
+                                //style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', marginBottom: '10px', padding: '10px' }}
                             />
                         </div>
+                        <br />
                         <Button
                             type="primary"
+                            size='large'
                             onClick={handleNouveauCompteButtonClick}
-                            style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', minWidth: '30%', minHeight: '50px', padding: '10px' }}
+                            style={{
+                                width:"80%"
+                            }}
+                            //style={{ backgroundColor: '#BEC9CB', borderRadius: '20px', minWidth: '30%', minHeight: '50px', padding: '10px' }}
                         >
                             créer un compte
                         </Button>
                         <p style={{ marginTop: '50px', fontStyle: 'italic' }}>
-                            Déjà un compte ? <a onClick={() => newCompteOrConnection("connction")} style={{ color: '#BEC9CB', cursor: 'pointer' }}>Se connecter</a>
+                            Déjà un compte ? <Button type='link' onClick={() => newCompteOrConnection("connction")} style={{ color: '#BEC9CB', cursor: 'pointer' }}>Se connecter</Button>
                         </p>
                     </>
                 )}
