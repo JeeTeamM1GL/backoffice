@@ -1,11 +1,12 @@
-import { AppleOutlined, BellOutlined, BookOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { AppleOutlined, BellOutlined, BookOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MoonOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, SunOutlined, UserOutlined } from '@ant-design/icons';
 import { Affix, Avatar, Breadcrumb, Button, Dropdown, Input, Layout, Menu, Select, Space, Tooltip, Typography } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './MainLayout.scss'
 import { getBreadCrumbLabel } from '../utils/helpers.ts';
+import { ThemeContext } from '../utils/providers/ThemeProvider.tsx';
 
 
 const { Option } = Select
@@ -16,7 +17,8 @@ function MainLayout() {
     const splitLocation = location.pathname.split("/");
     const route: any = splitLocation[splitLocation.length - 1];
     const [collapsed, setCollapsed] = useState(false);
-
+    const {isDark , setLightMode , setDarkMode} = useContext(ThemeContext);
+    
     const userConnected = JSON.parse(String(sessionStorage.getItem("userConnected")));
     const [breadCrumbItems, setBreadCrumbItems] = useState<object>([]);
 
@@ -29,6 +31,14 @@ function MainLayout() {
     const handleNavigationChange = (value: string) => {
         navigate(value);
     };
+
+    const handleLightMode = () => {
+        setLightMode()
+    }
+
+    const handleDarkMode = () => {
+        setDarkMode()
+    }
 
     const profilMenu: any = [
         {
@@ -268,9 +278,20 @@ function MainLayout() {
                             <Button type='text' icon={<HiOutlineSun size={24} /> } onClick={()=> handleDarkMode()} />
                         </Tooltip>
                     }   &nbsp;&nbsp;&nbsp; */}
+                        &nbsp;&nbsp;&nbsp;
+                        {
+                            isDark ?
+                            <Tooltip placement="bottomRight" title={<>Mode Sombre</>} >
+                                <Button type='text' icon={<MoonOutlined style={{ fontSize: 20 }} /> } onClick={()=> handleLightMode()} />
+                            </Tooltip>
+                            :
+                            <Tooltip placement="bottomRight" title={<>Mode clair</>}  >
+                                <Button type='text' icon={<SunOutlined style={{ fontSize: 20 }} /> } onClick={()=> handleDarkMode()} />
+                            </Tooltip>
+                        }   &nbsp;&nbsp;&nbsp;
 
                         <Tooltip placement="bottomRight" title={<>Notifications</>}  >
-                            <Button type='text' icon={<BellOutlined style={{ fontSize: 24 }} />} /*onClick={()=>{setOpenDrawer(true)}}*/ />
+                            <Button type='text' icon={<BellOutlined style={{ fontSize: 20 }} />} /*onClick={()=>{setOpenDrawer(true)}}*/ />
                         </Tooltip>
                         &nbsp;&nbsp;&nbsp;
 

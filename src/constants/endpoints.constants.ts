@@ -12,16 +12,22 @@ export const endpoints = {
         LIST: "/api/Category"
     },
     memoires: {
-        ADD: "/api/memoires",
-        UPDATE: "/api/memoires",
-        DELETE: "/api/memoires",
-        LIST: "/api/memoires"
+        ADD: "/api/Memoire",
+        UPDATE: "/api/Memoire",
+        DELETE: "/api/Memoire",
+        LIST: "/api/Memoire"
     },
     bibliothecaires: {
         ADD: "/api/Bibliothecaire",
         UPDATE: "/api/Bibliothecaire",
         DELETE: "/api/Bibliothecaire",
         LIST: "/api/Bibliothecaire",
+    },
+    encadreurs: {
+        ADD: "/api/Encadreur",
+        UPDATE: "/api/Encadreur",
+        DELETE: "/api/Encadreur",
+        LIST: "/api/Encadreur",
     },
     admin:{
         ADD: "/api/Admin",
@@ -30,10 +36,10 @@ export const endpoints = {
         LIST: "/api/Admin",
     },
     bibliothecaire:{
-        ADD:"/api/bibliothecaires",
-        UPDATE:"/api/bibliothecaires",
-        DELETE: "/api/bibliothecaires",
-        LIST: "/api/bibliothecaires"
+        ADD:"/api/Bibliothecaire",
+        UPDATE:"/api/Bibliothecaire",
+        DELETE: "/api/Bibliothecaire",
+        LIST: "/api/Bibliothecaire"
     },
     classe:{
         ADD: "/api/Classe",
@@ -42,15 +48,15 @@ export const endpoints = {
         LIST: "/api/Classe"
     },
     filiere:{
-        ADD: "/api/fillieres",
-        UPDATE: "/api/fillieres",
-        DELETE: "/api/fillieres" ,
-        LIST: "/api/fillieres"
+        ADD: "/api/Filiere",
+        UPDATE: "/api/Filiere",
+        DELETE: "/api/Filiere" ,
+        LIST: "/api/Filiere"
     },
     lecteur:{
-        ADD: "/api/lecteurs",
-        UPDATE: "/api/lecteurs",
-        DELETE: "/api/lecteurs" ,
-        LIST: "/api/lecteurs"
+        ADD: "/api/Lecteur",
+        UPDATE: "/api/Lecteur",
+        DELETE: "/api/Lecteur" ,
+        LIST: "/api/Lecteur"
     },
 }

@@ -106,7 +106,7 @@ export function Memoire({ body }: { body: IMemoire }) {
   return (
 
     <>
-      <div onClick={() => setVisible(true)} key={theBody.id ?? new Date().getTime()}
+      <div /*onClick={() => setVisible(true)} key={theBody.id ?? new Date().getTime()} */
         style={{ padding: "10px", borderRadius: "10px", backgroundColor: "#eb4d4b", maxHeight: '300px', height: "200px", textAlign: 'center', minWidth: "150px", width: "75%", margin: "10px", marginBottom: "20px", boxShadow: '5px 4px 2px -2px gray' }}>
         {theBody.image && theBody.image !== "" ? (
           <center>

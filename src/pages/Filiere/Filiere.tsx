@@ -5,29 +5,34 @@ import axios from 'axios';
 import Card from 'antd/es/card/Card';
 import { Button, Flex, Input, message, Modal, Popconfirm, Space, Table, TableProps } from 'antd';
 import Title from 'antd/es/typography/Title';
-import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import AddFiliere from '../../components/AddFiliere.tsx';
 import { IFiliere } from '../../interfaces/interfaces.ts';
 import { formatDate } from '../../utils/helpers.ts';
 
 function Filieres() {
-        // const [categories , setClasses] = useState([]);
-    // const [loading , setLoading] = useState(false);
-    // useEffect(() => {
-    //     setLoading(true)
-    //     getActions(endpoints.classes.LIST)
-    //     .then((response : any)=>{
-    //         console.log(response)
-    //         //setClasses(response?.data)
-    //     })
-    //     .finally(()=>{
-    //         setLoading(false)
-    //     })
+    const [dataSource , setDataSource] = useState([]);
+    const [loading , setLoading] = useState(false);
+    const [refetch,setRefetch] = useState<number>(0);
 
-    //   return () => {
+    const onRefresh  = () => {
+        setRefetch(Date.now())
+    }
+    useEffect(() => {
+        setLoading(true)
+        getActions(endpoints.filiere.LIST)
+        .then((response : any)=>{
+            //console.log(response)
+            setDataSource(response?.data)
+        })
+        .finally(()=>{
+            setLoading(false)
+        })
 
-    //   }
-    // }, [])
+      return () => {
+
+      }
+    }, [refetch])
     const [operation, setOperation] = useState<string>("");
     const [currentRecord, setCurrentRecord] = useState<IFiliere | any>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -45,7 +50,7 @@ function Filieres() {
     };
 
     const onDelete = (id: any) => {
-        deleteActions(endpoints.filiere.DELETE + "" + id)
+        deleteActions(endpoints.filiere.DELETE + "/" + id)
             .then((res) => {
                 if (res?.data?.status === 200) {
                     message.success('Filière supprimée avec succès');
@@ -72,7 +77,13 @@ function Filieres() {
             title: 'Date de creation',
             dataIndex: 'createdAt',
             key: 'createdAt',
-            render: (record) => <a>{formatDate(record.toISOString())}</a>,
+            render: (record) => <a>{formatDate(record)}</a>,
+        },
+        {
+            title: 'Dernière modification',
+            dataIndex: 'updateAt',
+            key: 'updateAt',
+            render: (record) => <a>{formatDate(record)}</a>,
         },
         {
             title: 'Action',
@@ -99,12 +110,15 @@ function Filieres() {
             <Title level={4}>Filières</Title>
             <Flex justify="space-between" flex={1} align="center">
                 <Input prefix={<SearchOutlined />} placeholder="Rechercher" style={{ width: "300px" }} />
-                <Button type="primary" onClick={addModal}>Nouveau</Button>
+                <Space>
+                    <Button type="primary" onClick={onRefresh} icon={<ReloadOutlined/>} ghost />
+                    <Button type="primary" onClick={addModal}>Nouveau</Button>
+                </Space>
             </Flex>
             <br />
-            <Table columns={columns} dataSource={[]} />
+            <Table columns={columns} dataSource={dataSource || []} />
             <Modal footer={null} title={<Title level={4}>{operation === "add" ? "Nouvelle filière" : "Modifier filière"}</Title>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} destroyOnClose>
-                <AddFiliere operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} />
+                <AddFiliere operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} onRefresh={onRefresh} />
             </Modal>
         </Card>
     );

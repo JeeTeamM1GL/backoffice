@@ -9,9 +9,11 @@ import { DeleteOutlined, EditOutlined, ReloadOutlined, SearchOutlined } from '@a
 import AddClasse from '../../components/AddClasse.tsx';
 import { IClasse } from '../../interfaces/interfaces.ts';
 import { formatDate } from '../../utils/helpers.ts';
+import SearchBar from '../../components/SearchBar.tsx';
 
 function Classes() {
     const [classes , setClasses] = useState([]);
+    const [classesCopy , setClassesCopy] = useState([]);
     const [loading , setLoading] = useState(false);
     
     const [operation, setOperation] = useState<string>("");
@@ -92,6 +94,7 @@ function Classes() {
         .then((response : any)=>{
             //console.log(response)
             setClasses(response?.data)
+            setClassesCopy(response?.data)
         })
         .finally(()=>{
             setLoading(false)
@@ -106,14 +109,19 @@ function Classes() {
         <Card>
             <Title level={4}>Classes</Title>
             <Flex justify="space-between" flex={1} align="center">
-                <Input prefix={<SearchOutlined />} placeholder="Rechercher" style={{ width: "300px" }} />
+                {/* <Input prefix={<SearchOutlined />} placeholder="Rechercher" style={{ width: "300px" }} /> */}
+                <SearchBar 
+                    data={classes}
+                    listKeys={["nom"]}
+                    setDataCopy={setClassesCopy}
+                />
                 <Space>
                     <Button type="primary" onClick={onRefresh} icon={<ReloadOutlined/>} ghost />
                     <Button type="primary" onClick={addModal}>Nouveau</Button>
                 </Space>
             </Flex>
             <br />
-            <Table loading={loading} columns={columns} dataSource={classes} rowKey={(record)=>record?.id} />
+            <Table loading={loading} columns={columns} dataSource={classesCopy} rowKey={(record)=>record?.id} />
             <Modal footer={null} title={<Title level={4}>{operation === "add" ? "Nouvelle classe" : "Modifier classe"}</Title>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} destroyOnClose>
                 <AddClasse operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} onRefresh={onRefresh} />
             </Modal>

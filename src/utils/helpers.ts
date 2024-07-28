@@ -13,6 +13,9 @@ export const getBreadCrumbLabel = (item : string) => {
         case "memoires":
             label = "Mémoires";
             break;
+        case "memoire-lecture":
+            label = "Lecture Mémoire";
+            break;
         case "settings":
             label = "Paramètres";
             break;

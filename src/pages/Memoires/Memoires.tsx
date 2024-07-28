@@ -126,6 +126,9 @@ import AddCategory from '../../components/AddCategory.tsx';
 import { IMemoire } from '../../interfaces/interfaces.ts';
 import { formatDate } from '../../utils/helpers.ts';
 import { Memoire } from '../../front/composants/Items.tsx';
+import { useNavigate } from 'react-router-dom';
+import AddMemoire from '../../components/AddMemoire.tsx';
+import MemoireItem from '../../front/composants/MemoireItem.tsx';
 
 
 
@@ -681,8 +684,32 @@ function Memoires() {
   // }, [])
 
   const [operation, setOperation] = useState<string>("")
+  const [memoires , setMemoires] = useState([]);
+  const [memoiresCopy , setMemoiresCopy] = useState([]);
   const [currentRecord, setCurrentRecord] = useState<IMemoire | any>(null)
+  const [loading , setLoading] = useState(false);
+  const [refetch,setRefetch] = useState<number>(0);
+  
+  const onRefresh  = () => {
+      setRefetch(Date.now())
+  }
 
+  useEffect(() => {
+    setLoading(true)
+    getActions(endpoints.memoires.LIST)
+    .then((response : any)=>{
+        //console.log(response)
+        setMemoires(response?.data)
+        setMemoiresCopy(response?.data)
+    })
+    .finally(()=>{
+        setLoading(false)
+    })
+
+  return () => {
+
+  }
+}, [refetch])
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [open, setOpen] = useState(false);
   const addModal = () => {
@@ -698,14 +725,14 @@ function Memoires() {
 
   };
   const onDelete = (id: any) => {
-    deleteActions(endpoints.categories.DELETE + "" + id)
-      .then((res) => {
-        if (res?.data?.status === 200) {
-          message.success('Memoire suprimer avec succes')
+    deleteActions(endpoints.memoires.DELETE + "/" + id)
+        .then((res) => {
+            if (res?.status === 200) {
+                message.success('Elément retiré avec succès')
+                onRefresh();
+            }
         }
-      }
-      )
-
+    )
   };
 
   const handleOk = () => {
@@ -759,6 +786,8 @@ function Memoires() {
   //   },
   // ];
 
+  const navigate = useNavigate();
+
 
   const showDrawer = () => {
     setOpen(true);
@@ -788,17 +817,29 @@ function Memoires() {
           },
           pageSize: 12,
         }}
-        grid={{ gutter: 16, column: 4 }}
+        grid={{ 
+          gutter: 16, 
+          //column: 4 ,
+          xs : 1,
+          sm : 2,
+          md : 3,
+          lg : 4,
+          xl : 4,
+          xxl : 4
+        }}
         dataSource={data}
         renderItem={(item: IMemoire) => (
-          <List.Item>
+          <List.Item >
             {/* <Card title={item.title}>Card content</Card> */}
-            <Memoire body={item} />
+            <div onClick={()=>{navigate("/layout/memoires/memoire-lecture",{replace : false})}} >
+              {/* <Memoire body={item} /> */}
+              <MemoireItem file='' name='Mémoire du 2juillet' />
+            </div>
           </List.Item>
         )}
       />
-      <Modal footer={null} title={<Title level={4}>{operation === "add" ? "Nouvelle categorie" : "Modifier categorie"}</Title>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} destroyOnClose>
-        <AddCategory operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} />
+      <Modal footer={null} title={<Title level={4}>{operation === "add" ? "Nouveau mémoire" : "Modifier les informations du mémoire"}</Title>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} destroyOnClose>
+        <AddMemoire operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} onRefresh={onRefresh} />
       </Modal>
       <Drawer title="Filtrer les memoires" onClose={onClose} open={open}>
         <p>Some contents...</p>

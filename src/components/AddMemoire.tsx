@@ -5,24 +5,57 @@ import TextArea from 'antd/es/input/TextArea';
 import { postActions, putActions } from '../actions/actions.ts';
 import { endpoints } from '../constants/endpoints.constants.ts';
 
-function AddMemoire({ operation, isModalOpen, setIsModalOpen, currentRecord }: any) {
+function AddMemoire({ operation, isModalOpen, setIsModalOpen, currentRecord , onRefresh }: any) {
     const [loading, setLoading] = useState<boolean>(false);
-
+    const [form] = Form.useForm();
     const save: FormProps<IMemoire>['onFinish'] = (values) => {
-        setLoading(true);
-        const endpoint = operation === 'add' ? endpoints.memoires.ADD : `${endpoints.memoires.UPDATE}/${currentRecord.id}`;
-        const action = operation === 'add' ? postActions : putActions;
-
-        action(endpoint, values).then((res) => {
-            if (res?.data?.status === 200) {
-                message.success(`Mémoire ${operation === 'add' ? 'ajouté' : 'modifié'} avec succès`);
-                setIsModalOpen(false);
+        //console.log('Success:', values);
+        form.validateFields()
+        .then(()=>{
+            switch (operation) {
+                case "add":
+                    setLoading(true)
+                    postActions(endpoints.memoires.ADD, values)
+                        .then((res) => {
+                            if (res?.status === 200) {
+                                message.success('Opération éffectuée avec succès')
+                                setIsModalOpen(false)
+                                onRefresh();
+                            }
+                        })
+                        .finally(
+                            () => setLoading(false)
+                        )
+    
+                    break;
+                case "update":
+                    setLoading(true)
+                    //putActions(endpoints.categories.UPDATE + "/" + currentRecord.id, values)
+                    //values.id = currentRecord?.id;
+                    putActions(`${endpoints.memoires.UPDATE}/${currentRecord?.id}` , values)
+                        .then((res) => {
+                            if (res?.status === 200) {
+                                message.success('Opération éffectuée avec succès')
+                                setIsModalOpen(false);
+                                onRefresh();
+    
+                            }
+                        })
+                        .finally(
+                            () => setLoading(false)
+                        )
+    
+                    break;
+                default:
+                    break;
             }
-        }).finally(() => setLoading(false));
-    };
+        })
+        .catch((err:any)=>{
+            console.log(err)
+        })
+        
 
-    const onFinishFailed: FormProps<IMemoire>['onFinishFailed'] = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+
     };
 
     return (
@@ -32,7 +65,6 @@ function AddMemoire({ operation, isModalOpen, setIsModalOpen, currentRecord }: a
             style={{ width: '100%' }}
             initialValues={currentRecord}
             onFinish={save}
-            onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
             <Form.Item<IMemoire>

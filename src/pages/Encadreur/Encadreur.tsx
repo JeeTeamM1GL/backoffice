@@ -3,34 +3,19 @@ import { deleteActions, getActions } from '../../actions/actions.ts';
 import { endpoints } from '../../constants/endpoints.constants.ts';
 import axios from 'axios';
 import Card from 'antd/es/card/Card';
-import { Button, Flex, Input, List, message, Modal, Popconfirm, Space, Table, TableProps } from 'antd';
+import { Button, Flex, Input, message, Modal, Popconfirm, Space, Table, TableProps } from 'antd';
 import Title from 'antd/es/typography/Title';
 import { DeleteOutlined, EditOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import AddCategory from '../../components/AddCategory.tsx';
-import { ICategorie } from '../../interfaces/interfaces.ts';
+import { ICategorie, IEncadreur } from '../../interfaces/interfaces.ts';
 import { formatDate } from '../../utils/helpers.ts';
 import SearchBar from '../../components/SearchBar.tsx';
-import CategoryFolder from '../../front/composants/CategoryFolder.tsx';
 
 
 
-const data: ICategorie[] = [
-    {
-        nom: "Securité",
-        description: "parlons sécurité",
-        createdAt: new Date()
-    },
-    {
-        nom: "Resau",
-        description: "parlons résau",
-        createdAt: new Date()
-    }
-];
-
-
-function Categories() {
-    const [categories , setCategories] = useState([]);
-    const [categoriesCopy , setCategoriesCopy] = useState([]);
+function Encadreur() {
+    const [encadreurs , setEncadreurs] = useState([]);
+    const [encadreursCopy , setEncadreursCopy] = useState([]);
     const [loading , setLoading] = useState(false);
     const [refetch,setRefetch] = useState<number>(0);
 
@@ -39,11 +24,11 @@ function Categories() {
     }
     useEffect(() => {
         setLoading(true)
-        getActions(endpoints.categories.LIST)
+        getActions(endpoints.encadreurs.LIST)
         .then((response : any)=>{
             //console.log(response)
-            setCategories(response?.data)
-            setCategoriesCopy(response?.data)
+            setEncadreurs(response?.data)
+            setEncadreursCopy(response?.data)
         })
         .finally(()=>{
             setLoading(false)
@@ -55,7 +40,7 @@ function Categories() {
     }, [refetch])
 
     const [operation, setOperation] = useState<string>("")
-    const [currentRecord, setCurrentRecord] = useState<ICategorie | any>(null)
+    const [currentRecord, setCurrentRecord] = useState<IEncadreur | any>(null)
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -65,14 +50,15 @@ function Categories() {
         setCurrentRecord(null)
     };
 
-    const updateModal = (record: ICategorie) => {
+    const updateModal = (record: IEncadreur) => {
         setIsModalOpen(true);
         setOperation("update")
         setCurrentRecord(record)
 
     };
+
     const onDelete = (id: any) => {
-        deleteActions(endpoints.categories.DELETE + "/" + id)
+        deleteActions(endpoints.encadreurs.DELETE + "/" + id)
             .then((res) => {
                 if (res?.status === 200) {
                     message.success('Elément retiré avec succès')
@@ -91,17 +77,17 @@ function Categories() {
         setIsModalOpen(false);
     };
 
-    const columns: TableProps<ICategorie | any>['columns'] = [
+    const columns: TableProps<IEncadreur | any>['columns'] = [
+        // {
+        //     title: 'Nom',
+        //     dataIndex: 'nom',
+        //     key: 'nom',
+        //     render: (record) => <a>{record}</a>,
+        // },
         {
-            title: 'Nom',
-            dataIndex: 'nom',
-            key: 'nom',
-            render: (record) => <a>{record}</a>,
-        },
-        {
-            title: 'Description',
-            dataIndex: 'description',
-            key: 'description',
+            title: 'Spécialité',
+            dataIndex: 'specialite',
+            key: 'specialite',
             width : 250 ,
             ellipsis : true
         },
@@ -144,13 +130,13 @@ function Categories() {
 
     return (
         <Card>
-            <Title level={4}>Catégories</Title>
+            <Title level={4}>Encadreurs</Title>
             <Flex justify="space-between" flex={1} align="center">
                 {/* <Input prefix={<SearchOutlined />} placeholder="Rechercher" style={{ width: "300px" }} /> */}
                 <SearchBar 
-                    data={categories}
+                    data={encadreurs}
                     listKeys={["nom"]}
-                    setDataCopy={setCategoriesCopy}
+                    setDataCopy={setEncadreursCopy}
                 />
                 <Space>
                     <Button type="primary" onClick={onRefresh} icon={<ReloadOutlined/>} ghost />
@@ -158,29 +144,10 @@ function Categories() {
                 </Space>
             </Flex>
             <br />
-            <List
-                loading={loading}
-                pagination={{
-                onChange: (page) => {
-                    console.log(page);
-                },
-                pageSize: 12,
-                }}
-                grid={{ gutter: 16, column: 4 }}
-                dataSource={categoriesCopy}
-                renderItem={(item: ICategorie) => (
-                <List.Item >
-                    <CategoryFolder  
-                        name={item?.nom as string}
-                    />
-                </List.Item>
-                )}
-            />
-            <br />
             <Table 
                 loading={loading} 
                 columns={columns} 
-                dataSource={categoriesCopy} 
+                dataSource={encadreursCopy} 
                 rowKey={(record)=>record?.id} 
                 pagination={{
                     showTotal : ( total , range)=> `${range[0]}-${range[1]} de ${total} éléments`,
@@ -193,15 +160,12 @@ function Categories() {
                 } as any}
                 
             />
-
-            
-        
-            <Modal footer={null} title={<Title level={4}>{operation === "add" ? "Nouvelle categorie" : "Modifier categorie"}</Title>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} destroyOnClose>
-                <AddCategory operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} onRefresh={onRefresh} />
+            <Modal footer={null} title={<Title level={4}>{operation === "add" ? "Nouvel encadreur" : "Modifier les informations de l'encadreur"}</Title>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} destroyOnClose>
+                {/* <AddCategory operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} onRefresh={onRefresh} /> */}
             </Modal>
         </Card>
 
     )
 }
 
-export default Categories
+export default Encadreur
