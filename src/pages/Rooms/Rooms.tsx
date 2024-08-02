@@ -118,7 +118,7 @@ function Rooms({hotelId} : any) {
             title: 'Statut',
             dataIndex: 'is_available',
             key: 'is_available',
-            render: (record) => <Tag title={record} color='blue' />,
+            render: (record) => record ? <Tag title={"DISPONIBLE"} color='processing' /> : <Tag title={"OCCUPEE"} color='error' /> ,
         },
         {
             title: 'Date de creation',
@@ -213,7 +213,7 @@ function Rooms({hotelId} : any) {
 
 
             <Modal footer={null} title={<Title level={4}>{operation === "add" ? "Nouvel Hotel" : "Modifier les informations de l'hotel"}</Title>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} destroyOnClose>
-                <AddRoom operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} onRefresh={onRefresh} />
+                <AddRoom operation={operation} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentRecord={currentRecord} onRefresh={onRefresh} hotelId={hotelId} />
             </Modal>
         </Card>
 

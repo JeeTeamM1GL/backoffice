@@ -59,7 +59,7 @@ export interface Room {
     price_per_night?: string;
     capacity?: string;
     description?: string;
-    is_available?: string;
+    is_available?: boolean;
     images?: string[];
     etage?: number;
     equipments?: string[];
@@ -67,6 +67,7 @@ export interface Room {
     createdAt?: Date;
     updatedAt?: Date;
     hotel?: Hotel[];
+    hotelId?: string;
 }
 export interface Reservation {
     id?: string;

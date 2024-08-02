@@ -79,7 +79,7 @@ function DetailsRoom() {
                     {
                         key: '5',
                         label: 'Statut',
-                        children: <Tag title={record?.is_available} />,
+                        children: record?.is_available ? <Tag title={"DISPONIBLE"} color='processing' /> : <Tag title={"OCCUPEE"} color='error' /> ,
                     },
                     
                     {

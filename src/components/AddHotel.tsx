@@ -46,6 +46,7 @@ function AddHotel({ operation, isModalOpen, setIsModalOpen, currentRecord , onRe
                                 city : values?.location?.city,
                                 address : values?.location?.address,
                             },
+                            gps_coordinate : values?.gps_coordinate,
                             rooms_count : Number(values?.rooms_count) ,
                             cover : values?.cover,
                             images : values?.images
@@ -53,7 +54,7 @@ function AddHotel({ operation, isModalOpen, setIsModalOpen, currentRecord , onRe
                         //console.log(payload)
                         _addHotel(payload)
                             .then((res) => {
-                                if (res?.status === 200) {
+                                if (res?.data) {
                                     message.success('Opération éffectuée avec succès')
                                     setIsModalOpen(false)
                                     onRefresh();
@@ -66,13 +67,25 @@ function AddHotel({ operation, isModalOpen, setIsModalOpen, currentRecord , onRe
                         break;
                     case "update":
                         setLoading(true)
-                        _updateHotel(currentRecord?.id, values)
+                        const payload1 = {
+                            name : values?.name,
+                            description : values?.description,
+                            location : {
+                                country : values?.location?.country,
+                                city : values?.location?.city,
+                                address : values?.location?.address,
+                            },
+                            gps_coordinate : values?.gps_coordinate,
+                            rooms_count : Number(values?.rooms_count) ,
+                            cover : values?.cover,
+                            images : values?.images
+                        }
+                        _updateHotel(currentRecord?.id, payload1)
                             .then((res) => {
-                                if (res?.status === 200) {
+                                if (res?.data) {
                                     message.success('Opération éffectuée avec succès')
                                     setIsModalOpen(false);
                                     onRefresh();
-
                                 }
                             })
                             .finally(
@@ -173,6 +186,15 @@ function AddHotel({ operation, isModalOpen, setIsModalOpen, currentRecord , onRe
 
 
             <Form.Item<Hotel>
+                label="Coordonées GPS"
+                name="gps_coordinate"
+                rules={[{ required: true, message: 'Champ obligatoire!' }]}
+            >
+                <Input />
+            </Form.Item>
+
+
+            <Form.Item<Hotel>
                 label="Photo de couverture (lien vers l'image) "
                 name="cover"
                 rules={[{ required: true, message: 'Champ obligatoire!' }]}
@@ -205,29 +227,6 @@ function AddHotel({ operation, isModalOpen, setIsModalOpen, currentRecord , onRe
                             />
                             }
                         >
-                            {/* <Form.Item 
-                                label="Type de contact" 
-                                name={[field.name, 'type']}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Champ obligatoire',
-                                    },
-                                ]}
-                            >
-                                <Select
-                                    style={{width:'100%',background:"transparent"}}
-                                    showSearch
-                                    placeholder="Type de contact"
-                                    optionFilterProp="children" 
-                                    filterOption={(input, option) => option.children[1].toLowerCase().includes(input.toLowerCase())}
-                                    onChange={(value)=>{setTypeContact(value)}}
-                                >     
-                                    <Option key={1}  value={"PHONE"} > Téléphone mobile </Option>
-                                    <Option key={2}  value={"FIXE"} > Téléphone fixe </Option>
-                                </Select>
-
-                            </Form.Item> */}
                             <Form.Item 
                                 label="Lien vers l'image" 
                                 name={[field.name]}

@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { Hotel, Room } from '../interfaces/interfaces.ts';
-import { FormProps, Form, Input, Button, Flex, message, Select } from 'antd';
+import { FormProps, Form, Input, Button, Flex, message, Select, Typography, Card } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { postActions, putActions } from '../actions/actions.ts';
 import { endpoints } from '../constants/endpoints.constants.ts';
 import { _addRoom, _updateRoom } from '../actions/rooms.actions.ts';
+import { CloseOutlined } from '@ant-design/icons';
 
 const {Option} = Select;
+const {Text} = Typography;
 
-function AddRoom({ operation, isModalOpen, setIsModalOpen, currentRecord , onRefresh }: any) {
+function AddRoom({ operation, isModalOpen, setIsModalOpen, currentRecord , onRefresh , hotelId }: any) {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState<boolean>(false);
     const save: FormProps<Room>['onFinish'] = (values) => {
@@ -17,9 +19,23 @@ function AddRoom({ operation, isModalOpen, setIsModalOpen, currentRecord , onRef
                 switch (operation) {
                     case "add":
                         setLoading(true)
-                        _addRoom(values)
+                        const payload = {
+                            num_room : values?.num_room,
+                            room_type : values?.room_type,
+                            price_per_night : values?.price_per_night,
+                            capacity : values?.capacity,
+                            description: values?.description,
+                            is_available : true,
+                            images : values?.images,
+                            etage: values?.etage,
+                            equipments : values?.equipments,
+                            surface : values?.surface,
+                            hotelId : hotelId
+                        }   
+                        //console.log(payload)
+                        _addRoom(payload)
                             .then((res) => {
-                                if (res?.status === 200) {
+                                if (res?.data === 200) {
                                     message.success('Opération éffectuée avec succès')
                                     setIsModalOpen(false)
                                     onRefresh();
@@ -32,10 +48,23 @@ function AddRoom({ operation, isModalOpen, setIsModalOpen, currentRecord , onRef
                         break;
                     case "update":
                         setLoading(true)
+                        const payload1 = {
+                            num_room : values?.num_room,
+                            room_type : values?.room_type,
+                            price_per_night : values?.price_per_night,
+                            capacity : values?.capacity,
+                            description: values?.description,
+                            is_available : true,
+                            images : values?.images,
+                            etage: values?.etage,
+                            equipments : values?.equipments,
+                            surface : values?.surface,
+                            hotelId : hotelId
+                        }   
                         
-                        _updateRoom(currentRecord?.id,values)
+                        _updateRoom(currentRecord?.id,payload1)
                             .then((res) => {
-                                if (res?.status === 200) {
+                                if (res?.data) {
                                     message.success('Opération éffectuée avec succès')
                                     setIsModalOpen(false);
                                     onRefresh();
@@ -72,7 +101,7 @@ function AddRoom({ operation, isModalOpen, setIsModalOpen, currentRecord , onRef
             autoComplete="off"
         >
             <Form.Item<Room>
-                label="Nom"
+                label="Numéro chambre"
                 name="num_room"
                 rules={[{ required: true, message: 'Champ obligatoire!' }]}
             >
@@ -82,7 +111,7 @@ function AddRoom({ operation, isModalOpen, setIsModalOpen, currentRecord , onRef
 
             <Form.Item<Room>
                 label="Type de chambre"
-                name="num_room"
+                name="room_type"
                 rules={[{ required: true, message: 'Champ obligatoire!' }]}
             >
                 <Select
@@ -91,7 +120,7 @@ function AddRoom({ operation, isModalOpen, setIsModalOpen, currentRecord , onRef
                     placeholder="Catégorie"
                     optionFilterProp="children" 
                     //filterOption={(input, option) => option.children[1].toLowerCase().includes(input.toLowerCase())}
-                    filterOption={(input : any, option : any) => option.children[0].toLowerCase().includes(input.toLowerCase())}
+                    filterOption={(input : any, option : any) => option.children.toLowerCase().includes(input.toLowerCase())}
                 >     
                     <Option key={1}  value="SIMPLE" > SIMPLE </Option>
                     <Option key={2}  value="DOUBLE" > DOUBLE </Option>
@@ -112,11 +141,11 @@ function AddRoom({ operation, isModalOpen, setIsModalOpen, currentRecord , onRef
                 label="Description"
                 name="description"
             >
-                <TextArea rows={5} />
+                <TextArea rows={3} />
             </Form.Item>
 
             <Form.Item<Room>
-                label="Capacité"
+                label="Capacité (nombre de personnes à accueilir)"
                 name="capacity"
                 rules={[{ required: true, message: 'Champ obligatoire!' }]}
             >
@@ -132,12 +161,92 @@ function AddRoom({ operation, isModalOpen, setIsModalOpen, currentRecord , onRef
             </Form.Item>
 
             <Form.Item<Room>
-                label="Surface"
+                label={<Text>Surface en m<sup>2</sup> </Text>}
                 name="surface"
                 rules={[{ required: true, message: 'Champ obligatoire!' }]}
             >
-                <Input />
+                <Input/>
             </Form.Item>
+
+            <Text style={{marginBottom : 8}} > Equipements </Text>
+            <Form.List name="equipments"  >
+                {(fields, { add, remove }) => (
+                    <div
+                        style={{
+                        display: 'flex',
+                        rowGap: 16,
+                        flexDirection: 'column',
+                        }}
+                    >
+                        {fields.map((field) => (
+                        <Card
+                            size="small"
+                            title={`Option ${field.name + 1}`}
+                            key={field.key}
+                            extra={
+                            <CloseOutlined
+                                onClick={() => {
+                                remove(field.name);
+                                }}
+                            />
+                            }
+                        >
+                            <Form.Item 
+                                label="Ex: WIFI,TV" 
+                                name={[field.name]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </Card>
+                        ))}
+
+                        
+                        <Button type="dashed" style={{marginBottom : 24}} onClick={() => add()} block>
+                            Ajouter une option
+                        </Button>
+                    </div>
+                )}
+            </Form.List>
+
+            <Text style={{marginBottom : 8}} > Quelques images </Text>
+            <Form.List name="images"  >
+                {(fields, { add, remove }) => (
+                    <div
+                        style={{
+                        display: 'flex',
+                        rowGap: 16,
+                        flexDirection: 'column',
+                        }}
+                    >
+                        {fields.map((field) => (
+                        <Card
+                            size="small"
+                            title={`Image ${field.name + 1}`}
+                            key={field.key}
+                            extra={
+                            <CloseOutlined
+                                onClick={() => {
+                                remove(field.name);
+                                }}
+                            />
+                            }
+                        >
+                            <Form.Item 
+                                label="Lien vers l'image" 
+                                name={[field.name]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </Card>
+                        ))}
+
+                        
+                        <Button type="dashed" style={{marginBottom : 24}} onClick={() => add()} block>
+                            Ajouter une image
+                        </Button>
+                    </div>
+                )}
+            </Form.List>
 
             <Flex justify="center" flex={1} align="center">
                 <Button type="primary" onClick={() => setIsModalOpen(false)} ghost>
