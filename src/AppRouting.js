@@ -1,23 +1,18 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Autentification from "./pages/Autentification/Authentification.tsx";
 import MainLayout from "./MainLayout/MainLayout.tsx";
-import MemoireLecture from "./pages/MemoireLecture/MemoireLecture.tsx";
-import Bibliotheque from "./pages/Bibliotheque/Bibliotheque.tsx";
-import Profil from "./pages/profil/Profil.tsx";
+import Profil from "./pages/Profil/Profil.tsx";
 import Home from "./pages/Home/Home.tsx";
 import NotFound from "./pages/NotFound/NotFound.tsx";
-import Categories from "./pages/Categories/Categories.tsx";
-import Memoires from "./pages/Memoires/Memoires.tsx";
-import Admins from "./pages/Admin/Admin.tsx";
-import Bibliothecaires from "./pages/Bibliothecaire/Bibliothecaire.tsx";
-import Classes from "./pages/Classe/Classe.tsx";
-import Filieres from "./pages/Filiere/Filiere.tsx";
-import Lecteurs from "./pages/Lecteur/Lecteur.tsx";
+import DetailsHotel from "./pages/DetailsHotel/DetailsHotel.tsx";
+import Hotels from "./pages/Hotels/Hotels.tsx";
+import DetailsReservation from "./pages/DetailsReservation/DetailsReservation.tsx";
+import DetailsRoom from "./pages/DetailsRoom/DetailsRoom.tsx";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to={"/login"} />,
+    element: <Navigate to={"/layout"} />,
   },
   {
     path: "*",
@@ -47,45 +42,30 @@ export const routes = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: "categories",
-            element: <Categories />,
-          },
-          {
-            path: "memoires",
+            path: "hotels",
             children: [
               {
                 path: "",
-                element: <Memoires />,
+                element: <Hotels />,
               },
               {
-                path: "memoire-lecture",
-                element: <MemoireLecture />,
+                path: "details-hotel",
+                children: [
+                  {
+                    path: "",
+                    element: <DetailsHotel />,
+                  },
+                  {
+                    path: "details-room",
+                    element: <DetailsRoom />,
+                  },
+                  {
+                    path: "details-reservation",
+                    element: <DetailsReservation />,
+                  },
+                ],
               },
             ],
-          },
-          {
-            path: "libraries",
-            element: <Bibliotheque />,
-          },
-          {
-            path: "admins",
-            element: <Admins />,
-          },
-          {
-            path: "bibliothecaires",
-            element: <Bibliothecaires />,
-          },
-          {
-            path: "classes",
-            element: <Classes />,
-          },
-          {
-            path: "filieres",
-            element: <Filieres />,
-          },
-          {
-            path: "lecteurs",
-            element: <Lecteurs />,
           },
           {
             path: "settings",

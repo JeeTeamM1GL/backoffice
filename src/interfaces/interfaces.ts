@@ -1,161 +1,106 @@
-export interface IAdmin extends IAbstractEntity {
-    lastname?: string;
-    firstname?: string;
-    username?: string;
-    password?: string;
-}
-export interface ICommentaire extends IAbstractEntity {
-    texte?: string;
-    datePublication?: Date;
-    memoire?: IMemoire;
-    password?: ILecteur;
-}
-
-
-export interface IAbstractEntity {
-    id?: number;
-    createdAt?: Date;
-    updateAt?: Date;
-    isActive?: boolean;
-}
-
-// Phone export interface
-export interface IPhone {
-    indicatif?: string;
-    phoneNumber?: string;
-}
-
-// User export interface
-export interface IUser extends IAbstractEntity {
-    firstname?: string;
-    lastname?: string;
+export interface User {
+    id?: string;
+    firstName?: string;
+    lastName?: string;
     email?: string;
-    phone?: IPhone;
+    telephone?: Telephone;
     password?: string;
-
+    address?: string;
+    role?: Role;
+    enabled?: boolean;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
-// Bibliothecaire export interface
-export interface IBibliothecaire extends IUser, IAbstractEntity { }
-
-// Administrateur export interface
-export interface IAdministrateur extends IUser, IAbstractEntity { }
-
-// Auteur export interface
-export interface IAuteur extends IUser, IAbstractEntity { }
-
-// Lecteur export interface
-export interface ILecteur extends IUser, IAbstractEntity {
-    isMember?: boolean;
+export interface Telephone {
+    indicatif?: string;
+    number?: string;
 }
 
-// Encadreur export interface
-export interface IEncadreur extends IAbstractEntity {
-    specialite?: string;
-    memoires?: IMemoire[];
+export enum Role {
+    SUPER_ADMIN = 'SUPER_ADMIN',
+    AMDIN = 'ADMIN',
+    CUSTOMER = 'CUSTOMER',
+    MANAGER = 'MANAGER',
+}
+export interface Location {
+    address?: string;
+    country?: string;
+    city?: string;
 }
 
-// GradeJury Enum
-export enum GradeJury {
-    PRESIDENT,
-    RAPPORTEUR,
-    EXAMINATEUR
-}
-
-// Jury export interface
-export interface IJury extends IAbstractEntity {
-    membre1?: string;
-    membre2?: string;
-    membre3?: string;
-}
-export interface IMembreJury extends IAbstractEntity {
-    grade?: GradeJury;
-    specialite?: string;
-}
-
-// Classe export interface
-export interface IClasse extends IAbstractEntity {
-    nom?: string;
-    memoires?: IMemoire[];
-}
-
-// ClassFiliere export interface
-export interface IClassFiliere extends IAbstractEntity { }
-
-// Filiere export interface
-export interface IFiliere extends IAbstractEntity {
-    intitule?: string;
-    memoires?: IMemoire[];
-}
-
-// Memoire export interface
-export interface IMemoire extends IAbstractEntity {
-    image?: string;
-    titre?: string;
+export interface Hotel {
+    id?: string;
+    name?: string;
+    location?: Location;
+    rooms_count?: number;
     description?: string;
-    dateSoutenance?: Date;
-    document?: string;
-    auteur?: IAuteur;
-    encadreur?: IEncadreur;
-    jury?: IJury;
-    year?: string;
-    categorie?: ICategorie;
-    filiere?: IFiliere;
-    classe?: IClasse;
+    cover?: string;
+    images?: string[];
+    gps_coordinate?: string;
+    rooms?: string[];
+    commentaires?: Commentaire[];
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
-// Categorie export interface
-export interface ICategorie extends IAbstractEntity {
-    nom?: string;
+export interface Commentaire {
+    id?: string;
+    text?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+    hotel?: Hotel[];
+}
+
+export interface Room {
+    id?: string;
+    num_room?: string;
+    room_type?: RoomType;
+    price_per_night?: string;
+    capacity?: string;
     description?: string;
-    memoires?: IMemoire[];
+    is_available?: string;
+    images?: string[];
+    etage?: number;
+    equipments?: string[];
+    surface?: number;
+    createdAt?: Date;
+    updatedAt?: Date;
+    hotel?: Hotel[];
+}
+export interface Reservation {
+    id?: string;
+    dateArrivee?: Date;
+    dateDepart?: Date;
+    dureeSejour?: number;
+    //dureeSejour?: Time;
+    personCount?: number;
+    status?: BookingStatus;
+    moyenPaiement?: PaymentMethod;
+    options?: string;
+    customerId?: string;
+    customer?: User;
+    hotelId?: string;
+    hotel?: Hotel;
+    roomId?: string;
+    room?: Room;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
-export interface ICategorieForm  {
-    nom?: string;
-    description?: string;
-    
-}
-export interface PartageMemoireDbContext extends IAbstractEntity {
-    Admins?: IAdministrateur[];
-    Bibliothecaires?: IBibliothecaire[];
-    Lecteurs?: ILecteur[];
-    Encadreurs?: IEncadreur[];
-    Filieres?: IFiliere[];
-    Classes?: IClasse[];
-    Categories?: ICategorie[];
-    Memoires?: IMemoire[];
-    Commentaires?: ICommentaire[];
-    Likes?: ILike[];
-    HistoriqueConsultations?: IHistoriqueConsultation[];
-    TdErreurs?: any[];
-}
-// HistoriqueConsultation export interface
-export interface IHistoriqueConsultation extends IAbstractEntity {
-    dateConsultation?: Date;
-    memoire?: IMemoire;
-    lecteur?: ILecteur;
+export enum RoomType {
+    SIMPLE = 'SIMPLE',
+    DOUBLE = 'DOUBLE',
+    SUITE = 'SUITE',
 }
 
-// Commentaire export interface
-export interface ICommentaire extends IAbstractEntity {
-    texte?: string;
-    datePublication?: Date;
+export enum PaymentMethod {
+    Virement = 'Virement',
+    CarteCredit = 'Carte Crédit',
 }
 
-// Likes export interface
-export interface ILike extends IAbstractEntity {
-    nombreLikes?: number;
-    memoire?: IMemoire;
-    lecteur?: ILecteur;
-}
-
-// Abonnement export interface
-export interface IAbonnement extends IAbstractEntity { }
-
-export interface ITdErreur {
-    id?: number;
-    dateErreur?: Date | null;
-    descriptionErreur?: string;
-    titreErreur?: string;
+export enum BookingStatus {
+    Pending = 'Pending',
+    Confirmed = 'Confirmed',
+    Cancelled = 'Cancelled',
 }

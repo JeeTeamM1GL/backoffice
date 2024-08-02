@@ -1,62 +1,68 @@
+// export const endpoints = {
+//     users: {
+//         ADD: "/USER-SERVICE/api/v1/users",
+//         UPDATE: "/USER-SERVICE/api/v1/users",
+//         DELETE: "/USER-SERVICE/api/v1/users",
+//         LIST: "/USER-SERVICE/api/v1/users",
+//         GET_BY_ID: "/USER-SERVICE/api/v1/users",
+//     },
+//     hotels: {
+//         ADD: "/HOTEL-SERVICE/api/v1/hotels",
+//         UPDATE: "/HOTEL-SERVICE/api/v1/hotels",
+//         DELETE: "/HOTEL-SERVICE/api/v1/hotels",
+//         LIST: "/HOTEL-SERVICE/api/v1/hotels",
+//         GET_BY_ID: "/HOTEL-SERVICE/api/v1/hotels",
+//     },
+//     rooms: {
+//         ADD: "/HOTEL-SERVICE/api/v1/rooms",
+//         UPDATE: "/HOTEL-SERVICE/api/v1/rooms",
+//         DELETE: "/HOTEL-SERVICE/api/v1/rooms",
+//         LIST: "/HOTEL-SERVICE/api/v1/rooms",
+//         LIST_BY_HOTEL_ID: "/HOTEL-SERVICE/api/v1/rooms/hotel",
+//         GET_BY_ID: "/HOTEL-SERVICE/api/v1/rooms",
+//     },
+//     reservations: {
+//         ADD: "/RESERVATIONS-SERVICE/api/v1/reservations",
+//         UPDATE: "/RESERVATIONS-SERVICE/api/v1/reservations",
+//         DELETE: "/RESERVATIONS-SERVICE/api/v1/reservations",
+//         LIST: "/RESERVATIONS-SERVICE/api/v1/reservations",
+//         LIST_BY_HOTEL_ID: "/RESERVATIONS-SERVICE/api/v1/reservations/hotel",
+//         GET_BY_ID: "/RESERVATIONS-SERVICE/api/v1/reservations",
+//     },
+    
+// }
+
+
 export const endpoints = {
     users: {
-        ADD: "/api/Users",
-        UPDATE: "/api/Users",
-        DELETE: "/api/Users",
-        LIST: "/api/Users"
+        ADD: "/api/v1/users",
+        UPDATE: "/api/v1/users",
+        DELETE: "/api/v1/users",
+        LIST: "/api/v1/users",
+        GET_BY_ID: "/api/v1/users",
     },
-    categories: {
-        ADD: "/api/Category",
-        UPDATE: "/api/Category",
-        DELETE: "/api/Category",
-        LIST: "/api/Category"
+    hotels: {
+        ADD: "/api/v1/hotels",
+        UPDATE: "/api/v1/hotels",
+        DELETE: "/api/v1/hotels",
+        LIST: "/api/v1/hotels",
+        GET_BY_ID: "/api/v1/hotels",
     },
-    memoires: {
-        ADD: "/api/Memoire",
-        UPDATE: "/api/Memoire",
-        DELETE: "/api/Memoire",
-        LIST: "/api/Memoire"
+    rooms: {
+        ADD: "/api/v1/rooms",
+        UPDATE: "/api/v1/rooms",
+        DELETE: "/api/v1/rooms",
+        LIST: "/api/v1/rooms",
+        LIST_BY_HOTEL_ID: "/api/v1/rooms/hotel",
+        GET_BY_ID: "/api/v1/rooms",
     },
-    bibliothecaires: {
-        ADD: "/api/Bibliothecaire",
-        UPDATE: "/api/Bibliothecaire",
-        DELETE: "/api/Bibliothecaire",
-        LIST: "/api/Bibliothecaire",
+    reservations: {
+        ADD: "/api/v1/reservations",
+        UPDATE: "/api/v1/reservations",
+        DELETE: "/api/v1/reservations",
+        LIST: "/api/v1/reservations",
+        LIST_BY_HOTEL_ID: "/api/v1/reservations/hotel",
+        GET_BY_ID: "/api/v1/reservations",
     },
-    encadreurs: {
-        ADD: "/api/Encadreur",
-        UPDATE: "/api/Encadreur",
-        DELETE: "/api/Encadreur",
-        LIST: "/api/Encadreur",
-    },
-    admin:{
-        ADD: "/api/Admin",
-        UPDATE: "/api/Admin",
-        DELETE: "/api/Admin",
-        LIST: "/api/Admin",
-    },
-    bibliothecaire:{
-        ADD:"/api/Bibliothecaire",
-        UPDATE:"/api/Bibliothecaire",
-        DELETE: "/api/Bibliothecaire",
-        LIST: "/api/Bibliothecaire"
-    },
-    classe:{
-        ADD: "/api/Classe",
-        UPDATE: "/api/Classe",
-        DELETE: "/api/Classe",
-        LIST: "/api/Classe"
-    },
-    filiere:{
-        ADD: "/api/Filiere",
-        UPDATE: "/api/Filiere",
-        DELETE: "/api/Filiere" ,
-        LIST: "/api/Filiere"
-    },
-    lecteur:{
-        ADD: "/api/Lecteur",
-        UPDATE: "/api/Lecteur",
-        DELETE: "/api/Lecteur" ,
-        LIST: "/api/Lecteur"
-    },
+
 }

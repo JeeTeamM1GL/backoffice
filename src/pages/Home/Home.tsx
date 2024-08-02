@@ -12,12 +12,12 @@ function Home() {
             </Card>
           </Col>
           <Col  xs={24} sm={12} md={8} lg={8} xl={8}>
-            <Card title={<><FileOutlined style={{backgroundColor:"#fff5dd",color:"#ffbc11",padding:5,borderRadius:8,fontSize:20}} /> Mémoires </>} >
+            <Card title={<><FileOutlined style={{backgroundColor:"#fff5dd",color:"#ffbc11",padding:5,borderRadius:8,fontSize:20}} /> Hotels </>} >
               0
             </Card>
           </Col>
           <Col  xs={24} sm={12} md={8} lg={8} xl={8}>
-            <Card title={<><PushpinOutlined style={{backgroundColor:"hsl(141,100%, 95%)",color:"hsl(141,100%, 35%)",padding:5,borderRadius:8,fontSize:20}} /> Lectures du jour </>} >
+            <Card title={<><PushpinOutlined style={{backgroundColor:"hsl(141,100%, 95%)",color:"hsl(141,100%, 35%)",padding:5,borderRadius:8,fontSize:20}} /> Réservations</>} >
               0
             </Card>
           </Col>

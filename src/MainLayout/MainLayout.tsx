@@ -1,4 +1,4 @@
-import { AppleOutlined, BellOutlined, BookOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MoonOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, SunOutlined, UserOutlined } from '@ant-design/icons';
+import { AppleOutlined, AppstoreOutlined, BellOutlined, BookOutlined, DashboardOutlined, FileOutlined, HomeOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MoonOutlined, NotificationOutlined, SearchOutlined, SettingOutlined, SunOutlined, UserOutlined } from '@ant-design/icons';
 import { Affix, Avatar, Breadcrumb, Button, Dropdown, Input, Layout, Menu, Select, Space, Tooltip, Typography } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
@@ -7,11 +7,17 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './MainLayout.scss'
 import { getBreadCrumbLabel } from '../utils/helpers.ts';
 import { ThemeContext } from '../utils/providers/ThemeProvider.tsx';
+import Keycloak from "keycloak-js";
+import {useKeycloak} from "@react-keycloak/web";
+import {keycloak} from "../config/keycloak.ts";
 
 
 const { Option } = Select
 const { Text, Title } = Typography
+
+
 function MainLayout() {
+
     const navigate = useNavigate();
     const location = useLocation();
     const splitLocation = location.pathname.split("/");
@@ -19,7 +25,7 @@ function MainLayout() {
     const [collapsed, setCollapsed] = useState(false);
     const {isDark , setLightMode , setDarkMode} = useContext(ThemeContext);
     
-    const userConnected = JSON.parse(String(sessionStorage.getItem("userConnected")));
+    const userConnected = JSON.parse(String(sessionStorage.getItem("userInfos")));
     const [breadCrumbItems, setBreadCrumbItems] = useState<object>([]);
 
     const [currentSelectedKeys, setCurrentSelectedKeys] = useState<any>(null);
@@ -28,6 +34,9 @@ function MainLayout() {
 
 
     const currentUrl = location.pathname;
+
+
+
     const handleNavigationChange = (value: string) => {
         navigate(value);
     };
@@ -54,7 +63,7 @@ function MainLayout() {
             key: 2,
             icon: <LogoutOutlined />,
             label: "Déconnexion",
-            onClick: () => navigate("/login")
+            onClick: () => keycloak.logout() //navigate("/login")
 
         },
     ]
@@ -81,61 +90,19 @@ function MainLayout() {
                     onClick: () => { navigate("/layout/home") },
                 },
                 {
-                    key: 'admins',
-                    icon: <UserOutlined />,
-                    label: "Admins",
-                    title: "Admins",
-                    onClick: () => { navigate("/layout/admins") }
+                    key: 'hotels',
+                    icon: <AppstoreOutlined />,
+                    label: "Hotels",
+                    title: "Hotels",
+                    onClick: () => { navigate("/layout/hotels") }
                 },
-                {
-                    key: 'lecteurs',
-                    icon: <UserOutlined />,
-                    label: "Lecteurs",
-                    title: "Lecteurs",
-                    onClick: () => { navigate("/layout/lecteurs") }
-                },
-                {
-                    key: 'bibliothecaires',
-                    icon: <UserOutlined />,
-                    label: "Bibliothécaires",
-                    title: "Bibliothécaires",
-                    onClick: () => { navigate("/layout/bibliothecaires") }
-                },
-                {
-                    key: 'categories',
-                    icon: <AppleOutlined />,
-                    label: "Catégories",
-                    title: "Catégories",
-                    onClick: () => { navigate("/layout/categories") }
-                },
-                {
-                    key: 'classes',
-                    icon: <HomeOutlined />,
-                    label: "Classes",
-                    title: "Classes",
-                    onClick: () => { navigate("/layout/classes") }
-                },
-                {
-                    key: 'filieres',
-                    icon: <HomeOutlined />,
-                    label: "Filières",
-                    title: "Filières",
-                    onClick: () => { navigate("/layout/filieres") }
-                },
-                {
-                    key: 'memoires',
-                    icon: <BookOutlined />,
-                    label: "Mémoires",
-                    title: "Mémoires",
-                    onClick: () => { navigate("/layout/memoires") }
-                },
-                {
-                    key: 'libraries',
-                    icon: <BookOutlined />,
-                    label: "Bibliothèque",
-                    title: "Bibliothèque",
-                    onClick: () => { navigate("/layout/libraries") }
-                },
+                // {
+                //     key: 'reservations',
+                //     icon: <UserOutlined />,
+                //     label: "Réservations",
+                //     title: "Réservations",
+                //     onClick: () => { navigate("/layout/reservations") }
+                // },
                 {
                     key: "settings",
                     label: "Paramètres",
@@ -166,23 +133,17 @@ function MainLayout() {
             case "home":
                 setCurrentSelectedKeys("home");
                 break;
-            case "memoire-lecture":
-                setCurrentSelectedKeys("memoires");
+            case "hotels":
+                setCurrentSelectedKeys("hotels");
                 break;
-            case "memoires":
-                setCurrentSelectedKeys("memoires");
+            case "details-hotel":
+                setCurrentSelectedKeys("hotels");
                 break;
-            case "categories":
-                setCurrentSelectedKeys("categories");
+            case "details-room":
+                setCurrentSelectedKeys("hotels");
                 break;
-            case "memoire-lecture":
-                setCurrentSelectedKeys("memoires");
-                break;
-            case "libraries":
-                setCurrentSelectedKeys("libraries");
-                break;
-            case "memoire-lecture":
-                setCurrentSelectedKeys("memoire-lecture");
+            case "details-reservation":
+                setCurrentSelectedKeys("hotels");
                 break;
             case "settings":
                 setCurrentSelectedKeys("settings");
@@ -237,7 +198,8 @@ function MainLayout() {
         <Layout style={{ minHeight: "100vh" }}>
             <Affix offsetTop={0}>
                 <Header className="header" style={{
-                    backgroundColor: "transparent",
+                    //backgroundColor: "transparent",
+                    backgroundColor: isDark ? 'rgba(78, 78, 78, 0.3)' : 'rgba(255,255,255, 0.7)',
                     backdropFilter: "blur(10px)", // Utilisez backdropFilter pour appliquer le flou à l'arrière-plan
                     display: "flex",
                     justifyContent: "space-between",
@@ -301,7 +263,7 @@ function MainLayout() {
                             }}
                         >
                             <Button type='text' icon={<Avatar size="small" icon={<UserOutlined />} style={{ cursor: 'pointer' }} />} >
-                                <Text>  {userConnected ? userConnected?.firstName : "user"} </Text>
+                                <Text>  {userConnected ? userConnected?.name : "user"} </Text>
                             </Button>
                         </Dropdown>
 
@@ -350,10 +312,10 @@ function MainLayout() {
                 >
                     <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", height: 56 }} >
                         {/* <Title level={5} > PARTAGE MEMOIRE </Title> */}
-                        <img src={require('./../asset/logo.png')} height={50} width={50} />
+                        {/* <img src={require('./../asset/logo.png')} height={50} width={50} /> */}
                         {
                             !collapsed &&
-                            <Text> <strong style={{ fontSize: 18 }} >ISI MEMORY</strong> </Text>
+                            <Text> <strong style={{ fontSize: 18 }} >BOOKING SYSTEM</strong> </Text>
                         }
                     </div>
                     {menu}

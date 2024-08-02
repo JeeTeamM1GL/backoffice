@@ -24,9 +24,11 @@ function Autentification() {
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
             <div style={{ flex: 1, backgroundColor: '#BEC9CB' }}>
-                <center><img src={require('./../../asset/logo.png')} alt="logo" /></center>
+                <center>
+                    {/* <img src={require('./../../asset/logo.png')} alt="logo" /> */}
+                </center>
                 <br />
-                <center><b><h1 style={{ fontSize: "50px", fontFamily: "monospace" }}>***ISI Memory***</h1></b></center>
+                <center><b><h1 style={{ fontSize: "50px", fontFamily: "monospace" }}>BOOKING APP</h1></b></center>
             </div>
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
                 {view === "connction" ? (
