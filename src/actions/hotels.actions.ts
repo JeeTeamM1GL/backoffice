@@ -1,11 +1,11 @@
-import { API_URL, API_URL_2 } from "../constants/environment.constants.ts";
+import { API_URL } from "../constants/environment.constants.ts";
 import axios from "axios";
 import { message } from "antd";
 import { endpoints } from "../constants/endpoints.constants.ts";
 
 export const _getAllHotels = async () => {
     try {
-        const response = await axios.get(`${API_URL_2}${endpoints.hotels.LIST}`, {
+        const response = await axios.get(`${API_URL}${endpoints.hotels.LIST}`, {
              headers : {
                  "Content-Type" : "application/json",
                  Authorization : `Bearer ${sessionStorage.getItem("accessToken")}`,
@@ -23,7 +23,7 @@ export const _getAllHotels = async () => {
 
 export const _getHotel = async (id : string) => {
     try {
-        const response = await axios.get(`${API_URL_2}${endpoints.hotels.GET_BY_ID}/${id}`, {
+        const response = await axios.get(`${API_URL}${endpoints.hotels.GET_BY_ID}/${id}`, {
              headers : {
                  "Content-Type" : "application/json",
                  Authorization : `Bearer ${sessionStorage.getItem("accessToken")}`,
@@ -40,7 +40,7 @@ export const _getHotel = async (id : string) => {
 
 export const _addHotel = async (payload : any) => {
     try {
-        const response = await axios.post(`${API_URL_2}${endpoints.hotels.ADD}` , payload , {
+        const response = await axios.post(`${API_URL}${endpoints.hotels.ADD}` , payload , {
             headers : {
                 Authorization : `Bearer ${sessionStorage.getItem("accessToken")}`
             }
@@ -54,7 +54,7 @@ export const _addHotel = async (payload : any) => {
 
 export const _updateHotel = async (id : string , payload : any) => {
     try {
-        const response = await axios.put(`${API_URL_2}${endpoints.hotels.UPDATE}/${id}` , payload , {
+        const response = await axios.put(`${API_URL}${endpoints.hotels.UPDATE}/${id}` , payload , {
             headers : {
                 Authorization : `Bearer ${sessionStorage.getItem("accessToken")}`
             }
@@ -69,7 +69,7 @@ export const _updateHotel = async (id : string , payload : any) => {
 
 export const _deleteHotel = async (id : string) => {
     try {
-        const response = await axios.delete(`${API_URL_2}${endpoints.hotels.DELETE}/${id}`, {
+        const response = await axios.delete(`${API_URL}${endpoints.hotels.DELETE}/${id}`, {
             headers : {
                 Authorization : `Bearer ${sessionStorage.getItem("accessToken")}`
             }
